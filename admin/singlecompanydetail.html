@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Company</title>
+      <!-- Favicons -->
+      <link href="assets/img/ifuel_logo-01.png" rel="icon">
+      <link href="assets/img/ifuel_logo-01.png" rel="apple-touch-icon">
+        <!-- Google Fonts -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+ 
+
+        <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+   <!-- ======= Header ======= -->
+   <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="dashboard.html" class="logo d-flex align-items-center">
+        <img src="assets/img/ifuel_logo-01.png" alt="Somfix-logo" style="position:relative; top:6px;">
+        <span class="d-none d-lg-block"><span style="font-size: 18px; color: black;">iFuelApp - Dashboard</span></span>
+      </a>
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+
+        <!-- -- End Search Icon--> 
+
+        <li class="nav-item dropdown">
+
+         
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+           
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+          </ul><!-- End Notification Dropdown Items -->
+
+        </li><!-- End Notification Nav -->
+
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Kevin Anderson</h6>
+              <!-- <span>Web Designer</span> -->
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+           
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-menu-button-wide"></i><span>Company</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="add_company.html">
+              <i class="bi bi-circle"></i><span>Add Company</span>
+            </a>
+          <li>
+            <a href="view_company.html">
+              <i class="bi bi-circle"></i><span>View Companies</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="add_employee.html">
+              <i class="bi bi-circle"></i><span>Add User</span>
+            </a>
+          </li>
+          <li>
+            <a href="view_employee.html">
+              <i class="bi bi-circle"></i><span>View Users</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>Subscriptions</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="add_subscription.html">
+              <i class="bi bi-circle"></i><span>Add Subscriptions</span>
+            </a>
+          </li>
+          <li>
+            <a href="view_subscription.html">
+              <i class="bi bi-circle"></i><span>View Subscriptions</span>
+            </a>
+          </li>
+          <li>
+            <a href="subscription_report.html">
+              <i class="bi bi-circle"></i><span>Subscriptions Report</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Icons Nav -->
+
+      <li class="nav-heading">Other Information</li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person"></i>
+          <span>Profile</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="report.html">
+          <i class="bi bi-envelope"></i>
+          <span>Report</span>
+        </a>
+      </li><!-- End Contact Page Nav -->
+
+     <!--End Register Page Nav --> 
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" id="logout" href="#">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+          <li class="breadcrumb-item active">View Particular Comapny Details</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <div class="col-xxl-12 col-md-12" id="viewdata">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">View Particular Company Data</h5>
+            <div class="mb-4">
+              <p>Comapnay Logo : &numsp;<span id="logo" style="font-size: 18px;"></span></p>
+              <p>Comapnay Name :  &numsp;<span id="companyname" style="font-size: 18px;"></span></p>
+              <p>Ceo Name :   &numsp;<span id='ceoname' style="font-size: 18px;"></span></p>
+              <p>Company Address :   &numsp;<span id="address" style="font-size: 18px;"></span></p>
+              <p>Company Phone :  &numsp; <span id="phone" style="font-size: 18px;"></span></p>
+              <p>Employee Amount :  &numsp; <span id="employee" style="font-size: 18px;"></span></p>
+              <p>Company Description :  &numsp; <span id="desc" class="text-justify" style="font-size: 18px;"></span></p>
+              <div class="text-start">
+                <a href="view_company.html" class="btn btn-primary">Go Back</a>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+    </main>
+
+
+
+
+     
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    
+    <!--   viewdata  JS File -->
+    <script   src="assets/js/main.js"></script>
+    <script  type="module"  src="assets/js/viewdata.js"></script>
+    <script type="module" src="assets/js/checkstate.js"></script>
+    <script type="module" src="assets/js/logout.js"></script>
+
+    </body>
+    </html>
