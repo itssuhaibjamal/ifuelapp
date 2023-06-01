@@ -102,7 +102,7 @@ let created_date = c.toLocaleDateString();
 // 1 - create collection name employee store data in there
 // function that  add employee inforation to cloud firestore
 async function AddNewAdmin(){
-  var ref = collection(db,'users');
+  var ref = collection(db,'admin');
   // call the function that uploads the ikmage to firebase storage
   let value =   uploadimagetofirebasestorage();
   // call the function that gets the returned value(downloaded imageurl from the function uploadimagetofirebasestorage  to this functions)
@@ -176,7 +176,7 @@ async function AddNewAdmin(){
     async function storemployedatain_userdata_collection(email){
         let docRef = collection(db,'usersrole');
         let docSnap = await addDoc( docRef,{
-            Email: email,
+            email: email,
             name:fname.value + lname.value,
             addeddate:created_date,
             id:userid,

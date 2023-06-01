@@ -1,6 +1,8 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
 import {getFirestore,addDoc,collection} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 import {firebaseConfig} from './firebase.js';
+import {getAuth ,  createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
 
 // Initialize Firebase
@@ -12,11 +14,14 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 
 
+// call firebase auth
+const auth = getAuth(app);
+
+
+
 
 // get form inputs
 let litters = document.getElementById('litters');
-let date = document.getElementById('date');
-let comp_id = document.getElementById('comp_id');
 let fuel_type = document.getElementById('fuel_type');
 
 
@@ -24,7 +29,7 @@ let fuel_type = document.getElementById('fuel_type');
 let successmsg = document.querySelector('#success-msg');
 let errormsg = document.querySelector('#error-msg');
 // submit btn
-let submitbtn = document.getElementById('addnewdata');
+let submitbtn = document.getElementById('savefuel');
 
 
 
@@ -32,8 +37,11 @@ let submitbtn = document.getElementById('addnewdata');
 submitbtn.addEventListener('click',(e)=>{
   e.preventDefault();
   // check input field if its filled
-  if(litters.value !='' && date.value != '' && comp_id.value != '' && fuel_type.value != ''){
+  if(litters.value !='' && fuel_type.value != ''){
     Addfueltodb();
+    errormsg.style.display = 'none';
+    successmsg.style.display = 'block';
+    successmsg.innerHTML = 'Fuel added successfully';
   }
   else{
     successmsg.style.display = 'none';
@@ -42,20 +50,35 @@ submitbtn.addEventListener('click',(e)=>{
   }
 });
 
+// check the auth change status then get the email of the user
+let useremail = '';
+let userid;
+auth.onAuthStateChanged((user)=>{
+  if(user){
+    // console.log(user.uid);
+    useremail = user.email;
+    userid = user.uid;
+  }
+});
+
+
+// get the current date
+let c = new Date();
+let created_date = c.toLocaleDateString();
+
 
 // insert (add) company data to cloudfirestore
- async function Addfueltodb(){
-    var ref = collection(db,'company');
+async function Addfueltodb(){
+    var ref = collection(db,'fuels');
 
     const docRef = await addDoc(
         ref,{
 
             litters:litters.value,
-            date:date.value,
-            comp_id:comp_id.value,
+            created_date:date.value,
+            id:userid,
             fuel_type:fuel_type.value,
-            companyphone:comp.value,
-            employeamount:employeamount.value,
+            c_email:useremail,
             companydesc:companydesc.value,
         }
     ).then(()=>{
@@ -70,3 +93,6 @@ submitbtn.addEventListener('click',(e)=>{
     
 
 }
+
+
+

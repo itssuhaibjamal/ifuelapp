@@ -405,7 +405,6 @@
                       <th scope="col">#</th>
                       <th scope="col">Litters</th>
                       <th scope="col">Date</th>
-                      <th scope="col">Company Id</th>
                       <th scope="col">Fuel_Type</th>
                       <th scope="col">Actions</th>
                       
@@ -414,7 +413,6 @@
                   <tbody>
                     <tr>
                       <th scope="row">1</th>
-                      <td>Cell</td>
                       <td>Cell</td>
                       <td>Cell</td>
                       <td>Cell</td>
@@ -427,20 +425,18 @@
                 <!-- add new data model -->
                 <div class="col-md-8" id="addnewdata" style="display: none;">
                   <h5 class="text-black mb-2">Ad New Fuels</h5>
+                  <p class="p-2 bg-success text-white" id="success-msg" style="display: none;"></p>
+                  <p class="p-2 bg-danger text-white" id="error-msg"style="display: none;"></p>
                     <div class="form-group mb-3">
                       <label class="form-label">Litters</label>
                       <input type="text" class="form-control" id="litters" placeholder="Enter Litters">
                     </div>
                     <div class="form-group  mb-3">
-                      <label class="form-label">Date</label>
-                      <input type="date" class="form-control" id="date" placeholder="Enter Litters">
-                    </div>
-                    <div class="form-group  mb-3">
                       <label class="form-label">Fuel Type</label>
-                      <input type="text" class="form-control" id="fuel_type" placeholder="Enter Litters">
+                      <input type="text" class="form-control" id="fuel_type" placeholder="Fuel Type">
                     </div>
                     <div class="form-group">
-                      <button class="btn btn-primary" id="save">Save</button>
+                      <button class="btn btn-primary" id="savefuel">Save</button>
                     </div>
                   </div>
 
@@ -454,10 +450,6 @@
                   <div class="form-group mb-3">
                     <label class="form-label">Litters</label>
                     <input type="text" class="form-control" id="litter" placeholder="Enter Litters">
-                  </div>
-                  <div class="form-group  mb-3">
-                    <label class="form-label">Date</label>
-                    <input type="date" class="form-control" id="dateat" placeholder="Enter Litters">
                   </div>
                   <div class="form-group  mb-3">
                     <label class="form-label">Fuel Type</label>
@@ -526,5 +518,6 @@
   <script src="../assets/js/main.js"></script>
   <script type="module" src="../api/admin/chechkstate.js"></script>
   <script type="module" src="../assets/js/logout.js"></script>
+  <script type="module" src="../api/company/addFuels.js"></script>
 </body>
 <html></html>

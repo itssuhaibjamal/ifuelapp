@@ -49,7 +49,7 @@ async function Checkuserrole(useremail) {
       // console.log(doc.id, " => ", doc.data().role);
       if(doc.data().role == 'admin'){
          console.log('welcome admin');
-         window.location = '../admin/dashboard.html';
+         window.location = '../../admin/dashboard.html';
       }
       else if(doc.data().role == 'company'){
          console.log('welcome Company');
