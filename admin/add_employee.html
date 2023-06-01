@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Employee</title>
+    <title>Add New Users</title>
       <!-- Favicons -->
       <link href="../assets/img/ifuel_logo-01.png" rel="icon">
       <link href="../assets/img/ifuel_logo-01.png" rel="apple-touch-icon">
@@ -131,12 +131,12 @@
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="add_employee.html">
-              <i class="bi bi-circle"></i><span>Add Employee</span>
+              <i class="bi bi-circle"></i><span>Add Users</span>
             </a>
           </li>
           <li>
             <a href="view_employee.html">
-              <i class="bi bi-circle"></i><span>View Employee</span>
+              <i class="bi bi-circle"></i><span>View Users</span>
             </a>
           </li>
         </ul>
@@ -195,7 +195,6 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-
     <div class="pagetitle">
       <h1>Dashboard</h1>
       <nav>
@@ -203,80 +202,94 @@
           <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
           <li class="breadcrumb-item active">Add New Employee</li>
         </ol>
-      </nav> 
-    </div>
-
-    <div class="container">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title"> Add New Employee</h5>
-          <div class="container mb-3">
-                <label class="form-label"><strong>Employe Name</strong></label>
-                <input type="text" class="form-control" placeholder="Enter Employe Name...">
+      </nav>
+      <div class="container">
+        <div class="col-8 col-md-8" id="createaccountform">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Create Admin Account</h4>
+              <p class="p-2 bg-success text-white" id="success-msg" style="display: none;"></p>
+              <p class="p-2 bg-danger text-white" id="error-msg"style="display: none;"></p>
+              <div class="container mb-3">
+                <label class="form-label"><strong>Admin Email</strong></label>
+                <input type="text" id="email" class="form-control" placeholder="Enter Employe Email...">
+              </div>
+              <div class="container mb-3">
+                <label class="form-label"><strong>Admin Password</strong></label>
+                <input type="password" id="pwd" class="form-control" placeholder="Enter Employe Password...">
+              </div>
+              <div class="container">
+                <button class="btn btn-primary" id="createaccount">Create Account</button>
+              </div>
           </div>
-          <div class="container mb-3">
-                <label class="form-label"><strong>Employe Img</strong></label>
-                <input type="file" class="form-control">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Age</strong></label>
-            <input type="text" class="form-control" placeholder="Enter Employe Age...">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Gender</strong></label>
-            <select class="form-select">
-              <option value="">Select gender</option>
-              <option value="">male</option>
-              <option value="">female</option>
-            </select>
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Dob</strong></label>
-            <input type="date" class="form-control">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Phone</strong></label>
-            <input type="phone" class="form-control" placeholder="Enter Employe Phone...">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Address</strong></label>
-            <input type="phone" class="form-control" placeholder="Enter Employe Address...">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Service</strong></label>
-            <input type="phone" class="form-control" placeholder="Enter Employe Service...">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Certificate</strong></label>
-            <input type="file" class="form-control">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe Experience</strong></label>
-            <input type="text" class="form-control" placeholder="Enter Employe Experience ...">
-          </div>
-          <div class="container mb-3">
-            <label class="form-label"><strong>Employe company_associated</strong></label>
-            <select class="form-select">
-              <option value="">Select company_associated with</option>
-              <option value="">Freelancer</option>
-              <option value="">Company</option>
-            </select>
-          </div>
-        <div class="text-center mb-3">
-          <button class="btn btn-primary">Submit</button>
         </div>
       </div>
+      <div class="row adminData" style="display: none;" id="adminData">
+        <div class="col-8">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"> Add New Admin</h5>
+              <form>
+                <p class="p-2 bg-success text-white" id="success-msg" style="display: none;"></p>
+                <p class="p-2 bg-danger text-white" id="error-msg"style="display: none;"></p>
+                <div class="container mb-3">
+                  <label class="form-label"><strong>Admin First name</strong></label>
+                    <input type="text" id="fname" class="form-control" placeholder="Firstname...">
+                  </div>
+                  <div class="container mb-3">
+                    <label class="form-label"><strong>Admin Lastname</strong></label>
+                    <input type="text" id="lname" class="form-control" placeholder="Lastname...">
+                  </div>
+                  <div class="container mb-3">
+                    <label class="form-label"><strong>Admin Email</strong></label>
+                    <input type="text" id="adminemail" class="form-control" placeholder="Email of Admin">
+                  </div>
+                  <div class="container mb-3">
+                    <label class="form-label"><strong>Admin Image</strong></label>
+                    <input type="file" class="form-control" id="img">
+                  </div>
+                  <div class="container mb-3">
+                    <label class="form-label"><strong>Admin Phone</strong></label>
+                    <input type="number" id="phone" class="form-control" placeholder="Enter Admin Phone Number...">
+                  </div>
+                  <div class="container mb-3">
+                    <label class="form-label"><strong>Admin Gender</strong></label>
+                    <select  id="gender" class="form-select">
+                      <option selected>Select Gender</option>
+                      <option value="male">male</option>
+                      <option value="female">female</option>
+                    </select>
+                  </div>
+                  <div class="container">
+                    <button class="btn btn-primary" id="submit">Submit</button>
+                  </div>
+              </div>
+            </div>
+          
+            </div>
+          </div>
     </div>
-    </div>
+  </div>
+
+    
     </main>
 
       <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <!-- Vendor JS Files -->
+      <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
+      <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="../assets/vendor/chart.js/chart.umd.js"></script>
+      <script src="../assets/vendor/echarts/echarts.min.js"></script>
+      <script src="../assets/vendor/quill/quill.min.js"></script>
+      <script src="../assets/vendor/simple-datatables/simple-datatables.js"></script>
+      <script src="../assets/vendor/tinymce/tinymce.min.js"></script>
  
     
       <!-- Template Main JS File -->
       <script src="../assets/js/main.js"></script>
-      <script src="../assets/js/checkstate.js"></script>
-      <script type="module" src="assets/js/logout.js"></script>
+      <script type="module" src="../api/admin/chechkstate.js"></script>
+      <script type="module" src="../api/admin/addNewUser.js"></script>
+      <script type="module" src="../assets/js/logout.js"></script>
     
 </body>
 </html>
