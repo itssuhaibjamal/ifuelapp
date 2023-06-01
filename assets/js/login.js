@@ -42,11 +42,11 @@ async function Checkuserrole(useremail) {
    docSnap.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       // console.log(doc.id, " => ", doc.data().role);
-      if(doc.data().role == 'admin'){
+      if(doc.data().role == 'company'){
          console.log('welcome admin');
          window.location = '../admin/dashboard.html';
       }
-      else if(doc.data().role == 'company'){
+      else if(doc.data().role == 'admin'){
          console.log('welcome Company');
          window.location = '../company/dashboard.html';
       }
