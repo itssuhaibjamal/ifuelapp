@@ -14,9 +14,13 @@ const logout_btn = document.querySelector('#logout');
 
 // logout function
 const Logoutclass = async() =>{
-  await signOut(auth);
-  console.log('logout success');
-  window.location.href = '../../login.html';
+  if(await signOut(auth) == true){
+    console.log('logout success');
+    window.location.href = '../../login.html';
+  }else{
+    console.log('Something new');
+    window.location.href = '../../login.html';
+  }
 }
 
 
