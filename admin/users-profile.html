@@ -317,8 +317,8 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="users-profile.html">
-          <i class="bi bi-person"></i>
-          <span>Profile</span>
+          <i class="bi bi-gear"></i>
+          <span>Setting</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
@@ -349,11 +349,11 @@
         <div class="col-xl-4">
 
           <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center" id="admin_list">
 
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-              <h2 id="admin_name">Kevin Anderson</h2>
-              <h3 id="admin_email">Web Designer</h3>
+              <!-- <img id="admin_logo" src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle"> -->
+              <h2 >Kevin Anderson</h2>
+              <h3 >Web Designer</h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -397,39 +397,39 @@
 
                   <h5 class="card-title">Profile Details</h5>
 
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Company</div>
-                    <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Job</div>
-                    <div class="col-lg-9 col-md-8">Web Designer</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Country</div>
-                    <div class="col-lg-9 col-md-8">USA</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Address</div>
-                    <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Phone</div>
-                    <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                  <div class="row" id="loadingmsg">
+                    <div class="col-lg-3 col-md-4 label">Full Name</div>
+                    <div class="col-lg-9 col-md-8" id="admin_name"></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                    <div class="col-lg-9 col-md-8" id="admin_email"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Region</div>
+                    <div class="col-lg-9 col-md-8" id="admin_region"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Country</div>
+                    <div class="col-lg-9 col-md-8" id="admin_country"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">City</div>
+                    <div class="col-lg-9 col-md-8" id="admin_city"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Phone</div>
+                    <div class="col-lg-9 col-md-8" id="admin_phone"></div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Gender</div>
+                    <div class="col-lg-9 col-md-8" id="admin_gender"></div>
                   </div>
 
                 </div>
@@ -651,6 +651,7 @@
 
   <!-- admins .js files-->
   <script type="module" src="assets/js/logout.js"></script>
+  <script type="module" src="assets/js/view-profile.js"></script>
 
 </body>
 

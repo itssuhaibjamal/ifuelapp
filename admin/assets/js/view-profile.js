@@ -1,51 +1,64 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import {getFirestore,addDoc,collection,getDocs} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
-import {getAuth} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
-import {firebaseConfig} from './firebase.js';
-// firebase intialization
-const app = initializeApp(firebaseConfig);
-// call the  get database method
-const db = getFirestore();
-const auth = getAuth(app);
-// get element
-let comp_logo = document.getElementById('comp_logo');
-let comp_name = document.getElementById('comp_name');
-let comp_email = document.getElementById('comp_email');
-let comp_ceo_name = document.getElementById('comp_ceo_name');
-let comp_phone = document.getElementById('comp_phone');
-let comp_city = document.getElementById('comp_city');
-let comp_region = document.getElementById('comp_region');
-let comp_country = document.getElementById('comp_country');
-let created_date = document.getElementById('created_date');
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+// import { getFirestore, addDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+// import { getAuth } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+// import { firebaseConfig } from './firebase.js';
 
-// loading id
-let loadingmsg = document.getElementById('loading');
+// // Firebase initialization
+// const app = initializeApp(firebaseConfig);
+// const db = getFirestore();
+// const auth = getAuth(app);
+
+// let admin_logo = document.getElementById('admin_logo');
+// let admin_name = document.getElementById('admin_name');
+// let admin_email = document.getElementById('admin_email');
+// let admin_gender = document.getElementById('admin_gender');
+// let admin_phone = document.getElementById('admin_phone');
+// let admin_city = document.getElementById('admin_city');
+// let admin_region = document.getElementById('admin_region');
+// let admin_country = document.getElementById('admin_country');
 
 
-let url = window.location.search;
-let check = url.search('view');
-//   get the id from url by slicing it  (uid is company id)
-let uid = url.slice(6,26);
+// auth.onAuthStateChanged((user) => {
+//   if (user) {
+//     console.log("Authenticated user found:", user.email);
+//     fetchProfileViewData();
+//   } else {
+//     console.log("No authenticated user found.");
+//   }
+// });
 
-loadingmsg.innerHTML = 'Please Wait Data Is Loading';
-async function displaysignlcompany(){
-  var ref = collection(db,"company");
-  const displayselectedcompany = await getDocs(ref);
-  displayselectedcompany.forEach(doc => {
-    // check if doc.id  from firestore collection equals the uid or(company id)
-    if(doc.id == uid){
-      comp_logo.innerHTML = `<img src='${doc.data().comp_logo}' class='rounded-circle' width=75 height=75>`;
-      comp_name.innerHTML = `${doc.data().comp_name}`;
-      comp_email.innerHTML = `${doc.data().comp_email}`;
-      comp_ceo_name.innerHTML = `${doc.data().comp_ceo_name}`;
-      comp_phone.innerHTML = `${doc.data().comp_phone}`;
-      comp_city.innerHTML = `${doc.data().comp_city}`;
-      comp_region.innerHTML = `${doc.data().comp_region}`;
-      comp_country.innerHTML = `${doc.data().comp_country}`;
-      created_date.innerHTML = `${doc.data().created_date}`;
-    }
-    loadingmsg.innerHTML = '';
-  });
-}
-displaysignlcompany();
+
+// // // Function to fetch profile view data for the currently logged-in user
+// async function fetchProfileViewData() {
+//   try {
+//     const user = auth.currentUser;
+//     if (user) {
+//       const userId = user.uid;
+//       const profileViewRef = collection(db, "admin"); // Replace "profileViews" with the actual name of your collection
+//       const queries = query(profileViewRef, where("id", "==", userId));
+//       const querySnapshot = await getDocs(queries);
+
+//       // Loop through the documents to retrieve the profile view data
+//       querySnapshot.forEach((doc) => {
+//         if(doc.id == userId){
+//           admin_logo.innerHTML = `<img src='${doc.data().user_logo}' class='rounded-circle' width=50 height=50>`;
+//           admin_name.innerHTML = `${doc.data().user_fullname}`;
+//           admin_email.innerHTML = `${doc.data().user_email}`;
+//           admin_gender.innerHTML = `${doc.data().user_gender}`;
+//           admin_phone.innerHTML = `${doc.data().user_phone}`;
+//           admin_city.innerHTML = `${doc.data().user_city}`;
+//           admin_region.innerHTML = `${doc.data().user_region}`;
+//           admin_country.innerHTML = `${doc.data().user_country}`;
+//         }
+//         loadingmsg.innerHTML = '';
+//       });
+//     } 
+//   } catch (error) {
+//     console.error("Error fetching profile view data:", error);
+//   }
+// }
+
+// fetchProfileViewData();
+
+
