@@ -11,7 +11,7 @@ const auth = getAuth(app);
 const checkAuthState = async() =>{
   onAuthStateChanged(auth,user =>{
     if(!user){
-      window.location = 'index.html';
+      window.location = '../../login.html';
     }
     else{
       return true;

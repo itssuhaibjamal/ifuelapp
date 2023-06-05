@@ -96,7 +96,7 @@ let docSnap = await addDoc( docRef,{
 
 // 2- add company to company collection
 async function AddAdmin(){
-  var ref = collection(db,'users');
+  var ref = collection(db,'admin');
   let value =   uploadimagetofirebasestorage();
   // call the function that gets the returned value(downloaded imageurl from the function uploadimagetofirebasestorage  to this functions)
   let comp_logo =  await getdownloadedurlafteruploadimage(value);
@@ -176,10 +176,10 @@ function createUserwithEmailandPwd(){
       email.value = '';
       pwd.value = '';
       confirm_pass.value = '';
-      const Logoutclass = async() =>{
-        await signOut(auth);
-      }
-      Logoutclass();
+      // const Logoutclass = async() =>{
+      //   await signOut(auth);
+      // }
+      // Logoutclass();
     }).catch((error)=>{
       console.log('error from assets/js/add-new-admin.js in admin folder: ' + error);
       success_msg.style.display = 'none';

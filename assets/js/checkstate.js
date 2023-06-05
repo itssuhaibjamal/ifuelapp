@@ -1,23 +1,23 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import {getAuth , onAuthStateChanged} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
-import {firebaseConfig} from './firebase.js';
+// Import the non-modular version of Firebase SDK
+import firebase from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
+import "https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js";
+import { firebaseConfig } from './firebase.js';
+
 // Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const auth = app.auth();
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-
-// check user state of login (if user login redirect to dashboard or loginpage)
-const checkAuthState = async() =>{
-  onAuthStateChanged(auth,user =>{
-    if(!user){
-      window.location = 'index.html';
-    }
-    else{
-      return true;
-    }
-    // return false
+// Check user state of login (if user is logged in, redirect to dashboard or login page)
+const checkAuthState = async () => {
+  await new Promise((resolve, reject) => {
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = 'index.html';
+      } else {
+        resolve(true);
+      }
+    }, reject);
   });
-}
-setInterval(checkAuthState(), 100);
-// console.log(checkAuthState  != '' ? refresh :'not working');
+};
+
+setInterval(checkAuthState, 100);
