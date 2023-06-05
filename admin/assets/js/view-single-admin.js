@@ -30,7 +30,7 @@ let uid = url.slice(6,26);
 
 loadingmsg.innerHTML = 'Please Wait Data Is Loading';
 async function displaysignlcompany(){
-  var ref = collection(db,"users");
+  var ref = collection(db,"admin");
   const displayselectedcompany = await getDocs(ref);
   displayselectedcompany.forEach(doc => {
     // check if doc.id  from firestore collection equals the uid or(company id)

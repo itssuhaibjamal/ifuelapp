@@ -10,7 +10,7 @@ const db = getFirestore();
 
 let tr = document.querySelector('#admin_list');
 async function ViewData(){
-  var ref = collection(db,"users");
+  var ref = collection(db,"admin");
   try {
     const docSnap = await getDocs(ref);
     // check if collection that we are fetching if its empty excute the else statement
