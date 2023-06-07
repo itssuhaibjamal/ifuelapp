@@ -6,18 +6,11 @@ import {firebaseConfig} from './firebase.js';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
-// check user state of login (if user login redirect to dashboard or loginpage)
-const checkAuthState = async() =>{
-  onAuthStateChanged(auth,user =>{
-    if(!user){
-      window.location = '../../login.html';
-    }
-    else{
-      return true;
-    }
-    // return false
-  });
-}
-setInterval(checkAuthState(), 100);
-// console.log(checkAuthState  != '' ? refresh :'not working');
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    console.log("Authenticated user found:", user.email);
+  } else {
+    console.log("No authenticated user found.");
+    window.location = '../../login.html';
+  }
+});

@@ -181,10 +181,6 @@ function createUserwithEmailandPwd(){
       email.value = '';
       pwd.value = '';
       confirm_pass.value = '';
-      const Logoutclass = async() =>{
-        await signOut(auth);
-      }
-      Logoutclass();
     }).catch((error)=>{
       console.log('error from assets/js/addnewcompany.js in admin folder: ' + error);
       success_msg.style.display = 'none';
