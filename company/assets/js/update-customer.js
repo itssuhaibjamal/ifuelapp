@@ -88,7 +88,7 @@ async function viewdatainupdateform(){
         ).then(()=>{
             errormsg.style.display = 'none';
             successmsg.style.display = 'block';
-            successmsg.innerHTML = "this " + result.data().user_email + ' is Updated Successfully';
+            successmsg.innerHTML = 'The customer Updated Successfully';
         }).catch((error)=>{
             errormsg.style.display = 'block';
                 successmsg.style.display = 'none';

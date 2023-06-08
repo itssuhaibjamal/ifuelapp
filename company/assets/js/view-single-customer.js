@@ -30,19 +30,19 @@ let uid = url.slice(6,26);
 
 loadingmsg.innerHTML = 'Please Wait Data Is Loading';
 async function displaysignlcompany(){
-  var ref = collection(db,"users");
+  var ref = collection(db,"customers");
   const displayselectedcompany = await getDocs(ref);
   displayselectedcompany.forEach(doc => {
     // check if doc.id  from firestore collection equals the uid or(company id)
     if(doc.id == uid){
-      comp_logo.innerHTML = `<img src='${doc.data().comp_logo}' class='rounded-circle' width=75 height=75>`;
-      comp_name.innerHTML = `${doc.data().comp_name}`;
-      comp_email.innerHTML = `${doc.data().comp_email}`;
-      comp_ceo_name.innerHTML = `${doc.data().comp_ceo_name}`;
-      comp_phone.innerHTML = `${doc.data().comp_phone}`;
-      comp_city.innerHTML = `${doc.data().comp_city}`;
-      comp_region.innerHTML = `${doc.data().comp_region}`;
-      comp_country.innerHTML = `${doc.data().comp_country}`;
+      comp_logo.innerHTML = `<img src='${doc.data().user_logo}' class='rounded-circle' width=75 height=75>`;
+      comp_name.innerHTML = `${doc.data().user_fullname}`;
+      comp_email.innerHTML = `${doc.data().user_email}`;
+      comp_ceo_name.innerHTML = `${doc.data().user_ceo_name}`;
+      comp_phone.innerHTML = `${doc.data().user_phone}`;
+      comp_city.innerHTML = `${doc.data().user_city}`;
+      comp_region.innerHTML = `${doc.data().user_region}`;
+      comp_country.innerHTML = `${doc.data().user_country}`;
       created_date.innerHTML = `${doc.data().created_date}`;
     }
     loadingmsg.innerHTML = '';

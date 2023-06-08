@@ -10,7 +10,7 @@ const db = getFirestore();
 
 let tr = document.querySelector('#comp_list');
 async function ViewData(){
-  var ref = collection(db,"users");
+  var ref = collection(db,"customers");
   try {
     const docSnap = await getDocs(ref);
     // check if collection that we are fetching if its empty excute the else statement
@@ -69,7 +69,7 @@ function displayselectdata () {
   let uid = url.slice(6,26);
   // read the company collection for particular clicked id (company id)
   async function ViewData(){
-    var ref = collection(db,"users");
+    var ref = collection(db,"customers");
     const displayselectedcompany = await getDocs(ref);
     displayselectedcompany.forEach(doc => {
       // companylogo.innerHTML = `${doc.data()}`;

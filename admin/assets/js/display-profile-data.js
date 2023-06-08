@@ -89,26 +89,26 @@ async function getdownloadedurlafteruploadimage(result){
 }
 
 async function Displayprofiledata(id){
-  const docRef = query(collection(db, "company"), where("id", "==", id));
+  const docRef = query(collection(db, "admin"), where("id", "==", id));
   const result = await getDocs(docRef);
   // console.log(result.data().id);
   result.forEach(docs => {
     // console.log(docs.data().company_name);
     // compare the id for company collection to current company account
     if(docs.data().id == id){
-      profile.src =`${docs.data().comp_logo}`;
-      fullname.innerHTML = `${docs.data().comp_name}`;
+      profile.src =`${docs.data().user_logo}`;
+      fullname.innerHTML = `${docs.data().user_fullname}`;
       // role of the company will be hand coded no need for the db
-      role.innerHTML= `${docs.data().comp_name}`;
-      fullname2.innerHTML = `${docs.data().comp_name}`;
-      comp_email.innerHTML = `${docs.data().comp_email}`;
-      roles.innerHTML = 'Company';
-      phonenumber.innerHTML = `${docs.data().comp_phone}`;
-      comp_ceo.innerHTML = `${docs.data().comp_ceo_name}`;
+      role.innerHTML= `${docs.data().user_fullname}`;
+      fullname2.innerHTML = `${docs.data().user_fullname}`;
+      comp_email.innerHTML = `${docs.data().user_email}`;
+      roles.innerHTML = 'Super Admin';
+      phonenumber.innerHTML = `${docs.data().user_phone}`;
+      comp_ceo.innerHTML = `${docs.data().user_city}`;
       // display data inside update form
-      updatefullname.value = `${docs.data().comp_name}`;
-      updatePhone.value = `${docs.data().comp_phone}`;
-      updateCeo.value = `${docs.data().comp_ceo_name}`;
+      updatefullname.value = `${docs.data().user_fullname}`;
+      updatePhone.value = `${docs.data().user_phone}`;
+      updateCeo.value = `${docs.data().user_city}`;
       // update btn when clicked excute the following
       updatebtn.addEventListener('click',function (e) {
         e.preventDefault();

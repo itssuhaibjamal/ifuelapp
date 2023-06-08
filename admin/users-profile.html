@@ -70,17 +70,19 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img  id="comp_logo" alt="Profile" class='rounded-circle' width=50 height=50>
+            <img alt="Profile" class="rounded-circle" id="profile-img" height="200" width="40">
             <span class="d-none d-md-block dropdown-toggle ps-2"id="fullname"></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6 id="subname"></h6>
+              <!-- <span>Web Designer</span> -->
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
+
             <li>
               <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                 <i class="bi bi-person"></i>
@@ -90,8 +92,12 @@
             <li>
               <hr class="dropdown-divider">
             </li>
+            </li>
             <li>
-              <a class="dropdown-item d-flex align-items-center" id="logout" href="#">
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" id="log-out" href="#">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -155,7 +161,7 @@
         </li>
       </ul>
     </li><!-- End Forms Nav -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-people"></i><span>Posts</span><i class="bi bi-chevron-down ms-auto"></i>
       </a>
@@ -176,13 +182,13 @@
           </a>
         </li>
       </ul>
-    </li><!-- End Posts Nav -->
+    </li>End Posts Nav -->
     <li class="nav-heading">Pages</li>
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="users-profile.html">
-        <i class="bi bi-gear"></i>
-        <span>Setting</span>
+        <i class="bi bi-person-fill"></i>
+        <span>My Account</span>
       </a>
     </li><!-- End Profile Page Nav -->
     <li class="nav-item">
@@ -217,7 +223,7 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src='' id="profile" class='rounded-circle' width=350 height=150/>
+              <img src='' id="profile" class='rounded-circle' width=850 height=150/>
               <br>
               <h2 id="fullname"></h2>
               <h4 id="role"></h4>
@@ -393,7 +399,7 @@
   <script src="assets/js/main.js"></script>
   <script type="module" src="assets/js/change-password.js"></script>
   <script type="module" src="assets/js/display-profile-data.js"></script>
-  <script type="module" src="assets/js/profile-data.js"></script>
+  <script type="module" src="assets/js/profile-topbar.js"></script>
   <script type="module" src="assets/js/logout.js"></script>
 
 </body>

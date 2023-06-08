@@ -9,6 +9,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const logout_btn = document.querySelector('#logout');
+const logout = document.querySelector('#log-out');
 
 
 // logout function
@@ -18,3 +19,4 @@ const Logoutclass = async() =>{
   window.location.href = '../../login.html';
 }
 logout_btn.addEventListener('click',Logoutclass);
+logout.addEventListener('click',Logoutclass);

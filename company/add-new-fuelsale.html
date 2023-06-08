@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>iFuelapp - Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -32,7 +32,6 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -71,8 +70,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img  id="comp_logo" alt="Profile" class='rounded-circle' width=50 height=50>
-            <span class="d-none d-md-block dropdown-toggle ps-2"id="fullname"></span>
+            <!-- <img  id="comp_logo" alt="Profile" class='rounded-circle' width=50 height=50> -->
+            <span class="d-none d-md-block dropdown-toggle ps-2" id="fullname"></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -104,6 +103,7 @@
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
+ <!-- ======= Sidebar ======= -->
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
@@ -228,51 +228,81 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>View Posts</h1>
+      <h1>Add new Cashier</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Posts</li>
-          <li class="breadcrumb-item active">View Posts</li>
+          <li class="breadcrumb-item">Fuels</li>
+          <li class="breadcrumb-item active">Add new fuel sale</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
     <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Posts</h5>
-              <div class="mb-4">
-                <div class="col-4 d-flex">
-                  <a class="btn btn-primary" href="add-new-post.html" style="position:relative;right:15px;">Add</a>
-                  <input type="text" class="form-control" placeholder="Search by name" style="position:relative;right:5px;">
-                  <button class="btn btn-primary" style="position:relative;left:10px;">Search</button>
-                </div>
-              </div>
-              <!-- Table with hoverable rows -->
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Post Title</th>
-                    <th scope="col">Fuel Type</th>
-                    <th scope="col">Fuel Price</th>
-                    <th scope="col">Created Date</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="post_list">
-                  <p id="msg"></p>
-                </tbody>
-              </table>
+      <div class="container">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Add New Fuel Sale</h5>
+            <p class="bg-danger text-white p-2" id="error_msg" style="display:none"></p>
+            <p class="bg-success text-white p-2" id="success_msg" style="display:none"></p>
+            <div class="container mb-3">
+              <label class="form-label"><strong>Customer Type</strong> </label>
+              <select  id="payment_method" class="form-select">
+                <option >Select Customer Type</option>
+                <option value="Zaad">Regular Customer</option>
+                <option value="Edahab">Irregular Customer</option>
+              </select>
             </div>
-          </div>
+            <div class="container mb-3">
+                  <label class="form-label"><strong>Customer Name</strong></label>
+                  <select  id="companyname" class="form-select">
+                    <option >Select Customer Name</option>
+                  </select>
+            </div>
+            <div class="container mb-3">
+                  <label class="form-label"><strong>Customer Email</strong></label>
+                  <input type="text" class="form-control" id="companyemail" placeholder="Enter Customer Email..." readonly>
+            </div>
+            <div class="container mb-3">
+                  <label class="form-label"><strong>Customer Phone</strong></label>
+                  <input type="text" class="form-control" id="companyphone" placeholder="Enter Customer Phone..." readonly>
+            </div>
+  
+            <div class="container mb-3">
+              <label class="form-label"><strong>Fuel Type</strong></label>
+              <select  id="fuel_type" class="form-select">
+                <option >Select Fuel Type</option>
+              </select>
+            </div>
+            <div class="container mb-3">
+              <label class="form-label"><strong>Fuel Litters</strong></label>
+              <input type="text" class="form-control" id="fuel_litter" placeholder="Enter Fuel Litter...">
+            </div>
+            <div class="container mb-3">
+              <label class="form-label"><strong>Fuel Price</strong></label>
+              <input type="text" class="form-control" id="fuel_price" placeholder="Enter Fuel Price..." readonly>
+            </div>
+            <div class="container mb-3">
+              <label class="form-label"><strong>Total Fuel</strong></label>
+              <input type="text" class="form-control" id="total_fuel" placeholder="Total Fuel" readonly>
+            </div>
+            <div class="container mb-3">
+              <label class="form-label"><strong>Total Fuel</strong></label>
+              <input type="text" class="form-control" id="total_price" placeholder="Total Fuel Price" readonly>
+            </div>
+              <div class="container mb-3">
+                <label class="form-label"><strong>Payment Method</strong> </label>
+                <select  id="payment_method" class="form-select">
+                  <option >Select Payment Method</option>
+                  <option value="Zaad">Zaad</option>
+                  <option value="Edahab">Edahab</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Cash">Loan</option>
+                </select>
+              </div>
         </div>
       </div>
+      </div>
     </section>
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -281,10 +311,6 @@
       &copy; Copyright <strong><span>iFuelApp</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
       Designed by <a href="https://ifuelapp.netlify.app/">iFuelApp</a>
     </div>
   </footer><!-- End Footer -->
@@ -303,10 +329,10 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-  <!-- admins .js files -->
+  <!--admins .js files-->
   <script type="module" src="assets/js/checkstate.js"></script>
   <script type="module" src="assets/js/profile-data.js"></script>
-  <script type="module" src="assets/js/view-posts.js"></script>
+  <script type="module" src="assets/js/add-fuelsale.js"></script>
   <script type="module" src="assets/js/logout.js"></script>
 
 </body>

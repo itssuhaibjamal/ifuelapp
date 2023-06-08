@@ -25,7 +25,7 @@ let comp_email = document.getElementById('customer_email');
 let cname = document.getElementById('customer_name');
 let comp_logo = document.getElementById('customer_logo');
 let ceoname = document.getElementById('comp_ceo_name');
-let detail = document.getElementById('customer_detail');
+let customer_detail = document.getElementById('customer_detail');
 let cphone = document.getElementById('customer_phone');
 let c_city = document.getElementById('customer_city');
 let cregion = document.getElementById('customer_region');
@@ -47,9 +47,9 @@ let createcustomer = document.getElementById('createcustomer');
 createaccountbtn.addEventListener('click',function(e){
   e.preventDefault();
   //  check input field  its filled
-  if(cname.value != '' && ceoname.value != '' && detail.value != '' && cphone.value != '' && c_city.value !='' && c_country.value !='' && cregion.value !='' && comp_logo.value !=''){
+  if(cname.value != '' && ceoname.value != ''  && cphone.value != '' && c_city.value !='' && c_country.value !='' && cregion.value !='' && comp_logo.value !=''){
     AddCompany();
-    storeuserole_in_usersrole_collection(useremail);
+    storeuserole_in_usersrole_collection(comp_email);
     
     // createaccountbtn.style.display = 'none';
   }
@@ -79,7 +79,7 @@ auth.onAuthStateChanged((user)=>{
 async function storeuserole_in_usersrole_collection(comp_email){
 let docRef = collection(db,'usersrole');
 let docSnap = await addDoc( docRef,{
-   email: comp_email,
+   email: comp_email.value,
    role:'customer',
    created_date:created_date,
    id:userid,
@@ -90,7 +90,6 @@ let docSnap = await addDoc( docRef,{
    console.log("The role isn't created " + err);
    cname.value = '';
    ceoname.value = '';
-   detail.value = '';
    comp_email.value = '';
    cphone.value = '';
    c_city.value = '';
@@ -105,7 +104,7 @@ let docSnap = await addDoc( docRef,{
 
 //2- add company to company collection
 async function AddCompany(){
-  var ref = collection(db,'users');
+  var ref = collection(db,'customers');
   let value =   uploadimagetofirebasestorage();
   // call the function that gets the returned value(downloaded imageurl from the function uploadimagetofirebasestorage  to this functions)
   let comp_logo =  await getdownloadedurlafteruploadimage(value);
@@ -127,11 +126,10 @@ async function AddCompany(){
         errormsg.style.display = 'none';
         successmsg.style.display = 'block';
         successmsg.innerHTML = 'Data Added Successfully';
-        successmsg.innerText = comp_name.value + ' Company Profile Create Successfully';
+        successmsg.innerText = cname.value + ' Company Profile Create Successfully';
         console.log("Successfully created the company");
         cname.value = '';
         ceoname.value = '';
-        detail.value = '';
         comp_email.value = '';
         cphone.value = '';
         c_city.value = '';
@@ -145,7 +143,6 @@ async function AddCompany(){
         errormsg.innerText = "error msg "+error;
         cname.value = '';
         ceoname.value = '';
-        detail.value = '';
         comp_email.value = '';
         cphone.value = '';
         c_city.value = '';

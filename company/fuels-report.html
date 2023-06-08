@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>iFuelapp - Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -228,12 +228,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>View Posts</h1>
+      <h1>View Fuels</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Posts</li>
-          <li class="breadcrumb-item active">View Posts</li>
+          <li class="breadcrumb-item">Fuels</li>
+          <li class="breadcrumb-item active">View Fuels</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -243,11 +243,11 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Posts</h5>
+              <h5 class="card-title">Fuels</h5>
               <div class="mb-4">
                 <div class="col-4 d-flex">
-                  <a class="btn btn-primary" href="add-new-post.html" style="position:relative;right:15px;">Add</a>
-                  <input type="text" class="form-control" placeholder="Search by name" style="position:relative;right:5px;">
+                  <input type="text" class="form-control" placeholder="Search by name">
+                      
                   <button class="btn btn-primary" style="position:relative;left:10px;">Search</button>
                 </div>
               </div>
@@ -256,15 +256,15 @@
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Post Title</th>
                     <th scope="col">Fuel Type</th>
+                    <th scope="col">Fuel Litter</th>
                     <th scope="col">Fuel Price</th>
-                    <th scope="col">Created Date</th>
+                    <th scope="col">Created date</th>
+                    <th scope="col">Comp Email</th>
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody id="post_list">
-                  <p id="msg"></p>
+                <tbody id="fuel_list">
                 </tbody>
               </table>
             </div>
@@ -306,7 +306,7 @@
   <!-- admins .js files -->
   <script type="module" src="assets/js/checkstate.js"></script>
   <script type="module" src="assets/js/profile-data.js"></script>
-  <script type="module" src="assets/js/view-posts.js"></script>
+  <script type="module" src="assets/js/fuels-report.js"></script>
   <script type="module" src="assets/js/logout.js"></script>
 
 </body>

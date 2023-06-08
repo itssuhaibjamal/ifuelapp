@@ -12,7 +12,7 @@ const app = initializeApp(firebaseConfig);
 // call the  get database method
 const db = getFirestore();
 const auth = getAuth(app);
-let tr = document.querySelector('#cashier_list');
+let tr = document.querySelector('#fuel_list');
 // check the auth change status then get the email of the user
 let companyemail = '';
 let userid;
@@ -54,7 +54,9 @@ async function Viewemployeedata(){
         <td>${doc.data().user_gender}</td>
         <td>${doc.data().comp_associated}</td>
         <td>${doc.data().created_date}</td>
-        <td class='d-flex'><a href="view-single-cashier.html?view=${doc.id}" class='btn btn-primary'>View</a>&numsp;<a href='update-cashier.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;<a href='view-cashiers.html?delete=${doc.id}' class='btn btn-danger'>Delete</a></td>
+        <td class='d-flex'><a href="view-single-cashier.html?view=${doc.id}" class='btn btn-primary'>View</a>&numsp;
+        <a href='update-cashier.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;
+        <a href='view-cashiers.html?delete=${doc.id}' class='btn btn-danger'>Delete</a></td>
         </tr>
         
     `;
@@ -83,15 +85,15 @@ window.onload = Viewemployeedata();
 let url = window.location.search;
 
 // check if the url contains word update and have id
-let updateurl = url.search('delete');
+let deleteurl = url.search('delete');
 
 
 let uid = url.slice(8,28).toString();
 
-if(updateurl == 1){
+if(deleteurl == 1){
     async function delete_employee(){
 
-        updateDoc(doc(db,'fuels',uid),{
+        deleteDoc(doc(db,'users',uid),{
             delete_status:"true",
             }).then(()=>{
                 alert('item deleted successfully');
