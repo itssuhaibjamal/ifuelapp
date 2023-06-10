@@ -245,52 +245,39 @@
             <p class="bg-danger text-white p-2" id="error_msg" style="display:none"></p>
             <p class="bg-success text-white p-2" id="success_msg" style="display:none"></p>
             <div class="container mb-3">
-              <label class="form-label"><strong>Customer Type</strong> </label>
-              <select  id="payment_method" class="form-select">
+              <select  id="customer_type" class="form-select">
                 <option >Select Customer Type</option>
-                <option value="Zaad">Regular Customer</option>
-                <option value="Edahab">Irregular Customer</option>
+                <option value="Regular Customer">Regular Customer</option>
+                <option value="Ir-regular Customer">Irregular Customer</option>
               </select>
             </div>
             <div class="container mb-3">
-                  <label class="form-label"><strong>Customer Name</strong></label>
-                  <select  id="companyname" class="form-select">
+                  <select  id="customer_name" class="form-select">
                     <option >Select Customer Name</option>
                   </select>
             </div>
             <div class="container mb-3">
-                  <label class="form-label"><strong>Customer Email</strong></label>
-                  <input type="text" class="form-control" id="companyemail" placeholder="Enter Customer Email..." readonly>
+                  <input type="text" class="form-control" id="customer_email" placeholder="Enter Customer Email..." readonly>
             </div>
             <div class="container mb-3">
-                  <label class="form-label"><strong>Customer Phone</strong></label>
-                  <input type="text" class="form-control" id="companyphone" placeholder="Enter Customer Phone..." readonly>
+                  <input type="text" class="form-control" id="customer_phone" placeholder="Enter Customer Phone..." readonly>
             </div>
   
             <div class="container mb-3">
-              <label class="form-label"><strong>Fuel Type</strong></label>
               <select  id="fuel_type" class="form-select">
                 <option >Select Fuel Type</option>
               </select>
             </div>
             <div class="container mb-3">
-              <label class="form-label"><strong>Fuel Litters</strong></label>
-              <input type="text" class="form-control" id="fuel_litter" placeholder="Enter Fuel Litter...">
-            </div>
-            <div class="container mb-3">
-              <label class="form-label"><strong>Fuel Price</strong></label>
               <input type="text" class="form-control" id="fuel_price" placeholder="Enter Fuel Price..." readonly>
             </div>
             <div class="container mb-3">
-              <label class="form-label"><strong>Total Fuel</strong></label>
-              <input type="text" class="form-control" id="total_fuel" placeholder="Total Fuel" readonly>
+              <input type="text" class="form-control" id="fuel_litter" placeholder="Enter Fuel Litter...">
             </div>
             <div class="container mb-3">
-              <label class="form-label"><strong>Total Fuel</strong></label>
               <input type="text" class="form-control" id="total_price" placeholder="Total Fuel Price" readonly>
             </div>
               <div class="container mb-3">
-                <label class="form-label"><strong>Payment Method</strong> </label>
                 <select  id="payment_method" class="form-select">
                   <option >Select Payment Method</option>
                   <option value="Zaad">Zaad</option>
@@ -298,6 +285,10 @@
                   <option value="Cash">Cash</option>
                   <option value="Cash">Loan</option>
                 </select>
+              </div>
+              <div class="text-center mb-3">
+                <p id="idinput" style="display:none"></p>
+                <button class="btn btn-primary" id="submit">Submit</button>
               </div>
         </div>
       </div>

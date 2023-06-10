@@ -72,7 +72,7 @@ async function Viewemployeedata(){
 }
 } catch (error) {
     tr.innerHTML = `<p class="text-center">${error}</p>`;
-    console.log(doc.data().post_title);
+    console.log(doc.data().fuel_type);
    }
        
      

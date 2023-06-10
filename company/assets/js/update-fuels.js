@@ -1,5 +1,5 @@
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import {getFirestore,getDoc,doc,updateDoc} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+import {getFirestore,getDoc,doc,updateDoc, increment} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 import {firebaseConfig} from './firebase.js';
 
 // firebase intialization
@@ -62,35 +62,40 @@ async function viewdatainupdateform(){
       } 
     }
 
-   
+    
+    
     // update data form function
-    async function updatefuels(){
-    
-        //   get the id from url by slicing it  (uid is company id)
-        let uid = url.slice(8,28);
-        const ref = doc(db, "fuels", uid.toString());
-        await updateDoc(
-            ref,{
-                fuel_type:fuel_type.value,
-                fuel_litter:fuel_litter.src,
-                fuel_price:fuel_price.value,
-            }
-        ).then(()=>{
-            errormsg.style.display = 'none';
-            successmsg.style.display = 'block';
-            successmsg.innerHTML ='Fuel is Updated Successfully';
-        }).catch((error)=>{
-            errormsg.style.display = 'block';
-                successmsg.style.display = 'none';
-                errormsg.innerHTML = error;
-        });
-    
-       
-        }
-        
+async function updatefuels() {
+  try {
+    // get the id from url by slicing it (uid is company id)
+    let uid = url.slice(8, 28);
+    const ref = doc(db, "fuels", uid.toString());
 
+    const docSnap = await getDoc(ref);
+    if (docSnap.exists()) {
+      let oldfuel_litter = docSnap.data().fuel_litter;
+      let newfuel_litter = oldfuel_litter + parseFloat(fuel_litter.value);
 
-        updatefuel.addEventListener('click',function(e){
-        e.preventDefault();
-        updatefuels();
-    });
+      await updateDoc(ref, {
+        fuel_type: fuel_type.value,
+        fuel_litter: newfuel_litter,
+        fuel_price: fuel_price.value,
+      });
+
+      errormsg.style.display = 'none';
+      successmsg.style.display = 'block';
+      successmsg.innerHTML = 'Fuel is Updated Successfully';
+    } else {
+      console.log("No such document!");
+    }
+  } catch (error) {
+    errormsg.style.display = 'block';
+    successmsg.style.display = 'none';
+    errormsg.innerHTML = error;
+  }
+}
+
+updatefuel.addEventListener('click', function(e) {
+  e.preventDefault();
+  updatefuels();
+});

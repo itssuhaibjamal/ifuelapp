@@ -14,19 +14,20 @@ import {firebaseConfig} from './firebase.js';
 
 
 let idinput = document.getElementById('idinput')
-let companyname= document.getElementById('companyname');
-let companyemail= document.getElementById('companyemail');
-let companyphone= document.getElementById('companyphone');
-let subscriptionduration= document.getElementById('subscriptionduration');
+let customer_name= document.getElementById('customer_name');
+let customer_email= document.getElementById('customer_email');
+let customer_phone= document.getElementById('customer_phone');
+let fuel_litter= document.getElementById('fuel_litter');
+let customer_type= document.getElementById('customer_type');
 let payment_method= document.getElementById('payment_method');
-let paymentamount= document.getElementById('paymentamount');
-let dateandtime= document.getElementById('dateandtime');
-let subscription_status = document.getElementById('subscription_status');
+let fuel_type= document.getElementById('fuel_type');
+let fuel_price= document.getElementById('fuel_price');
+let total_price = document.getElementById('total_price');
 let submitbtn= document.getElementById('submit');
 
 
  // employee form needs service category names in service type field
- async function displayservicecategorynames(){
+ async function displayCustomersName(){
     let Docref = collection(db,'customers');
     let Docsnap = await getDocs(Docref);
     
@@ -34,17 +35,13 @@ let submitbtn= document.getElementById('submit');
         var option = document.createElement('option');
 
         option.text = docs.data().user_fullname;
-        companyname.options.add(option)
-        
-        
-        
-        
-        
-        
+        customer_name.options.add(option)
     });
+
+    
     
         // check the change of the value in select element
-    companyname.addEventListener('change',(event)=>{
+    customer_name.addEventListener('change',(event)=>{
         getcurrentcompanyinfo(event.target.value)
     });
             
@@ -62,8 +59,8 @@ async function getcurrentcompanyinfo(name){
             
             console.log(idinput.textContent);
             idinput.innerHTML =doc.id;
-                companyemail.value= doc.data().user_email;
-                companyphone.value = doc.data().user_phone;
+                customer_email.value= doc.data().user_email;
+                customer_phone.value = doc.data().user_phone;
                    
             }
     });
@@ -81,8 +78,7 @@ let error_msg = document.getElementById('error_msg');
 let success_msg = document.getElementById('success_msg');
 
 // display company names in the select form
-displayservicecategorynames();
-
+displayCustomersName();
 
 
 // store subscription data in the subscription collection
@@ -90,9 +86,9 @@ displayservicecategorynames();
 async function Addsubscriptiontodb(companyid){
     let docRef = collection(db,"fuelsale");
     let docSnap = await addDoc( docRef,{
-     user_fullname:companyname.value,
-     user_email:companyemail.value,
-     user_phone:companyphone.value,
+     user_fullname:customer_name.value,
+     user_email:customer_email.value,
+     user_phone:customer_phone.value,
      fuel_type:subscriptionduration.value,
      payment_method:payment_method.value,
      customer_type:paymentamount.value,
