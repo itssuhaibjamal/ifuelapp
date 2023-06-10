@@ -13,7 +13,6 @@ const db = getFirestore();
 const auth = getAuth(app);
 
 // id element of the input and assigning variable
-let idinput = document.getElementById('idinput')
 let customer_name= document.getElementById('customer_name');
 let customer_email= document.getElementById('customer_email');
 let customer_phone= document.getElementById('customer_phone');
@@ -23,11 +22,13 @@ let payment_method= document.getElementById('payment_method');
 let fuel_type= document.getElementById('fuel_type');
 let fuel_price= document.getElementById('fuel_price');
 let total_price = document.getElementById('total_price');
-let submitbtn= document.getElementById('submit');
+
+//button to update the fuelsale collection declaring
+let submitbtn= document.getElementById('updatefuelsale');
 
 // error or success message id elements
-let error_msg = document.getElementById('error_msg');
-let success_msg = document.getElementById('success_msg');
+let errormsg = document.getElementById('error_msg');
+let successmsg = document.getElementById('success_msg');
 
 // customers information from the customers collection
 async function displayCustomersName(){
@@ -93,7 +94,6 @@ async function getCurrentFuelInfo(name){
 }
 // display company names in the select form
 displayFuelsType();
-
 // getting the current user login email and uid
 let useremail = '';
 let userid;
@@ -108,92 +108,111 @@ auth.onAuthStateChanged((user)=>{
 let c = new Date();
 let created_date = new Date().toLocaleString();
 
-async function AddFuelSale() {
-  try {
-    const fuelsRef = collection(db, "fuels"); // Reference to the "fuels" collection
-    const fuelsaleRef = collection(db, "fuelsale"); // Reference to the "fuelsale" collection
-    const fuelLitterValue = parseFloat(fuel_litter.value);
-    const fuelTypeValue = fuel_type.value;
+//update the fuelsale collections
 
-    // Fetch the relevant document from the "fuels" collection
-    const querySnapshot = await getDocs(query(fuelsRef, where("fuel_type", "==", fuelTypeValue)));
-
-    if (querySnapshot.empty) {
-      console.log("No such document!");
-      return;
-    }
-
-    const fuelDocRef = querySnapshot.docs[0].ref;
-    const oldFuelLitter = querySnapshot.docs[0].data().fuel_litter;
-    const newFuelLitter = oldFuelLitter - fuelLitterValue;
-
-    // Perform the transaction to update the fuel litter value in the "fuels" collection
-    await runTransaction(db, async (transaction) => {
-      transaction.update(fuelDocRef, { fuel_litter: newFuelLitter });
-
-      // Add the fuel sale document to the "fuelsale" collection
-      await addDoc(fuelsaleRef, {
-        customer_name: customer_name.value,
-        customer_email: customer_email.value,
-        customer_phone: customer_phone.value,
-        fuel_litter: fuelLitterValue,
-        customer_type: customer_type.value,
-        payment_method: payment_method.value,
-        fuel_type: fuelTypeValue,
-        fuel_price: fuel_price.value,
-        total_price: total_price.value,
-        company_associated: useremail,
-        created_date: created_date,
-      });
-    });
-
-    // Display success message
-    error_msg.style.display = 'none';
-    success_msg.style.display = 'block';
-    success_msg.innerHTML = 'Fuel Sale added successfully';
-  } catch (error) {
-    // Display error message
-    error_msg.style.display = 'block';
-    success_msg.style.display = 'none';
-    error_msg.innerHTML = error;
+// get the last of the url start from ? symbol
+let url = window.location.search;
+// get the url to verify if that should be displayed or not 
+let check = url.search('update');
+if(check == 1){
+  viewdatainupdateform();
+}
+else{
+  alert('Error Occur While Displaying The Data Please Try Again....');
+}
+// displaydata in update form function
+async function viewdatainupdateform(){
+  //   get the id from url by slicing it  (uid is company id)
+  let uid = url.slice(8,28);
+  console.log(uid)
+  const docRef = doc(db, "fuelsale", uid);
+  const result = await getDoc(docRef);
+  var option = document.createElement('option');
+  // option.text = docs.data().servicename;
+  if (result.exists()) {
+    fuel_type.value = result.data().fuel_type;
+    fuel_litter.value = result.data().fuel_litter;
+    fuel_price.value = result.data().fuel_price;
+    customer_name.value = result.data().customer_name
+    customer_email.value = result.data().customer_email
+    customer_phone.value = result.data().customer_phone
+    customer_type.value = result.data().customer_type
+    payment_method.value = result.data().payment_method
+    total_price.value = result.data().total_price
+    console.log(result.data().fuel_type);
+    console.log(result.data().fuel_price);
+    // console.log("Document data:", result.data().fullname);
   }
+  else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  } 
 }
 
 
-async function AddLoan(){
-    var ref = collection(db,'loan');
-    if(payment_method.value == "loan" || payment_method.value == "Loan"){
-        const docRef = await addDoc(
-            ref,{
-                customer_name: customer_name.value,
-                customer_email: customer_email.value,
-                customer_phone: customer_phone.value,
-                fuel_litter: fuel_litter.value,
-                customer_type: customer_type.value,
-                payment_method: payment_method.value,
-                fuel_type: fuel_type.value,
-                fuel_price: fuel_price.value,
-                total_price: total_price.value,
-                company_associated:useremail,
-                created_date: created_date,
-            })
-            .then(()=>{
-              error_msg.style.display = 'none';
-              success_msg.style.display = 'block';
-              success_msg.innerHTML = 'new loan of : ' + customer_name.value+ '   is created successfully';
-              console.log('loan data added to loan collection');
-            }).catch((error)=>{
-              error_msg.style.display = 'block';
-              success_msg.style.display = 'none';
-              error_msg.innerHTML = error;
-              console.log("error msg ", error);
-            });
+// Update data function
+async function updateFuelSale() {
+  try {
+    let uid = url.slice(8, 28); // Assuming the UID is 20 characters long
+    const docRef = doc(db, "fuelsale", uid);
+    const fuelSaleDoc = await getDoc(docRef);
+
+    if (fuelSaleDoc.exists()) {
+      const oldFuelLitter = fuelSaleDoc.data().fuel_litter;
+      const newFuelLitter = fuel_litter.value; // Specify the new fuel_litter value you want to update
+
+      // Calculate the difference in fuel_litter
+      const fuelLitterDifference =  oldFuelLitter - newFuelLitter;
+
+      // Update the "fuelsale" collection
+      await updateDoc(docRef, {
+        fuel_litter: newFuelLitter
+      });
+
+      // Update the "fuels" collection
+      const fuelsRef = collection(db, "fuels");
+      const fuelsQuerySnapshot = await getDocs(fuelsRef);
+
+      if (!fuelsQuerySnapshot.empty) {
+        const fuelsDoc = fuelsQuerySnapshot.docs[0];
+        const oldFuelsLitter = fuelsDoc.data().fuel_litter;
+
+        // Calculate the new fuel_litter value for the "fuels" collection
+        const newFuelsLitter = oldFuelsLitter + fuelLitterDifference;
+
+        // Update the "fuels" collection with the new fuel_litter value
+        await updateDoc(fuelsDoc.ref, {
+          fuel_litter: newFuelsLitter
+        });
+      }
+      // Update the "fuels" collection
+      const loanRef = collection(db, "loan");
+      const loanQuerySnapshot = await getDocs(loanRef);
+
+      if (!loanQuerySnapshot.empty) {
+        const fuelsDoc = loanQuerySnapshot.docs[0];
+        const oldFuelsLitter = fuelsDoc.data().fuel_litter;
+
+        // Calculate the new fuel_litter value for the "fuels" collection
+        const newFuelsLitter = oldFuelsLitter + fuelLitterDifference;
+
+        // Update the "fuels" collection with the new fuel_litter value
+        await updateDoc(fuelsDoc.ref, {
+          fuel_litter: newFuelsLitter
+        });
+      }
+
+      console.log("Fuel sale updated successfully");
+    } else {
+      console.log("No such document!");
     }
+  } catch (error) {
+    console.error("Error updating fuel sale:", error);
+  }
 }
 
 
 
 submitbtn.addEventListener('click',function() {
-    AddFuelSale();
-    AddLoan();
+    updateFuelSale();
 })

@@ -20,51 +20,39 @@ let successmsg = document.querySelector('#successmsg');
 let errormsg = document.querySelector('#errormsg');
 
 
-  // get the last of the url start from ? symbol
-  let url = window.location.search;
-  // get the url to verify if that should be displayed or not 
-  let check = url.search('update');
-
-
-   
+// get the last of the url start from ? symbol
+let url = window.location.search;
+// get the url to verify if that should be displayed or not 
+let check = url.search('update');
 if(check == 1){
-viewdatainupdateform();
-   
+  viewdatainupdateform();
 }
 else{
-   alert('Error Occur While Displaying The Data Please Try Again....');
+  alert('Error Occur While Displaying The Data Please Try Again....');
 }
-
-
-
 // displaydata in update form function
 async function viewdatainupdateform(){
-    
-    //   get the id from url by slicing it  (uid is company id)
-    let uid = url.slice(8,28);
-    console.log(uid)
-    const docRef = doc(db, "fuels", uid);
-    const result = await getDoc(docRef);
-    var option = document.createElement('option');
-    // option.text = docs.data().servicename;
-    if (result.exists()) {
-        fuel_type.value = result.data().fuel_type;
-        fuel_litter.value = result.data().fuel_litter;
-        fuel_price.value = result.data().fuel_price;
-
-        console.log(result.data().fuel_type);
-        console.log(result.data().fuel_price);
-        // console.log("Document data:", result.data().fullname);
-      }
-      else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      } 
-    }
-
-    
-    
-    // update data form function
+  //   get the id from url by slicing it  (uid is company id)
+  let uid = url.slice(8,28);
+  console.log(uid)
+  const docRef = doc(db, "fuels", uid);
+  const result = await getDoc(docRef);
+  var option = document.createElement('option');
+  // option.text = docs.data().servicename;
+  if (result.exists()) {
+    fuel_type.value = result.data().fuel_type;
+    fuel_litter.value = result.data().fuel_litter;
+    fuel_price.value = result.data().fuel_price;
+    console.log(result.data().fuel_type);
+    console.log(result.data().fuel_price);
+    // console.log("Document data:", result.data().fullname);
+  }
+  else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
+  } 
+}
+// update data form function
 async function updatefuels() {
   try {
     // get the id from url by slicing it (uid is company id)

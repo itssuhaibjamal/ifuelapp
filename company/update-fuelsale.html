@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>iFuelapp - Dashboard</title>
+  <title>iFuelApp - Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -32,6 +32,7 @@
 
 <body>
 
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -70,8 +71,8 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <!-- <img  id="comp_logo" alt="Profile" class='rounded-circle' width=50 height=50> -->
-            <span class="d-none d-md-block dropdown-toggle ps-2" id="fullname"></span>
+            <img  id="comp_logo" alt="Profile" class='rounded-circle' width=50 height=50>
+            <span class="d-none d-md-block dropdown-toggle ps-2"id="fullname"></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -103,7 +104,6 @@
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
- <!-- ======= Sidebar ======= -->
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
@@ -233,7 +233,7 @@
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
           <li class="breadcrumb-item">Fuels</li>
-          <li class="breadcrumb-item active">Add new fuel sale</li>
+          <li class="breadcrumb-item active">Upadte Fuel sale</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -241,10 +241,11 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"> Add New Fuel Sale</h5>
+            <h5 class="card-title"> Update Fuel Sale</h5>
             <p class="bg-danger text-white p-2" id="error_msg" style="display:none"></p>
             <p class="bg-success text-white p-2" id="success_msg" style="display:none"></p>
             <div class="container mb-3">
+              <label class="form-label"><strong>Customer type</strong></label>
               <select  id="customer_type" class="form-select">
                 <option >Select Customer Type</option>
                 <option value="Regular Customer">Regular Customer</option>
@@ -252,31 +253,39 @@
               </select>
             </div>
             <div class="container mb-3">
+              <label class="form-label"><strong>Customer Name</strong></label>
                   <select  id="customer_name" class="form-select">
                     <option >Select Customer Name</option>
                   </select>
             </div>
             <div class="container mb-3">
-                  <input type="text" class="form-control" id="customer_email" placeholder="Enter Customer Email..." readonly>
+              <label class="form-label"><strong>Customer email</strong></label>
+                  <input type="text" class="form-control" id="customer_email" readonly>
             </div>
             <div class="container mb-3">
-                  <input type="text" class="form-control" id="customer_phone" placeholder="Enter Customer Phone..." readonly>
+              <label class="form-label"><strong>Customer phone</strong></label>
+                  <input type="text" class="form-control" id="customer_phone" readonly>
             </div>
             <div class="container mb-3">
-              <input type="text" class="form-control" id="fuel_litter" placeholder="Enter Fuel Litter...">
+              <label class="form-label"><strong>Fuel litters</strong></label>
+              <input type="text" class="form-control" id="fuel_litter">
             </div>
             <div class="container mb-3">
+              <label class="form-label"><strong>Fuel type</strong></label>
               <select  id="fuel_type" class="form-select">
                 <option >Select Fuel Type</option>
               </select>
             </div>
             <div class="container mb-3">
-              <input type="text" class="form-control" id="fuel_price" placeholder="Enter Fuel Price..." readonly>
+              <label class="form-label"><strong>Fuel price</strong></label>
+              <input type="text" class="form-control" id="fuel_price" readonly>
             </div>
             <div class="container mb-3">
-              <input type="text" class="form-control" id="total_price" placeholder="Total Fuel Price" readonly>
+              <label class="form-label"><strong>Total fuel price</strong></label>
+              <input type="text" class="form-control" id="total_price" readonly>
             </div>
               <div class="container mb-3">
+                <label class="form-label"><strong>Payment method</strong></label>
                 <select  id="payment_method" class="form-select">
                   <option >Select Payment Method</option>
                   <option value="Zaad">Zaad</option>
@@ -287,7 +296,7 @@
               </div>
               <div class="text-center mb-3">
                 <p id="idinput" style="display:none"></p>
-                <button class="btn btn-primary" id="submit">Submit</button>
+                <button class="btn btn-primary" id="updatefuelsale">Submit</button>
               </div>
         </div>
       </div>
@@ -322,7 +331,7 @@
   <!--admins .js files-->
   <script type="module" src="assets/js/checkstate.js"></script>
   <script type="module" src="assets/js/profile-data.js"></script>
-  <script type="module" src="assets/js/add-fuelsale.js"></script>
+  <script type="module" src="assets/js/update-fuelsale.js"></script>
   <script type="module" src="assets/js/logout.js"></script>
 
 </body>
