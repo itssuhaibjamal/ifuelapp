@@ -20,7 +20,7 @@ let cname = document.getElementById('comp_name');
 let comp_logo = document.getElementById('comp_logo');
 let ceoname = document.getElementById('comp_ceoname');
 let detail = document.getElementById('comp_detail');
-let caddress = document.getElementById('comp_business');
+let comp_business_card = document.getElementById('comp_business');
 let cphone = document.getElementById('comp_phone');
 let c_city = document.getElementById('comp_city');
 let cregion = document.getElementById('comp_region');
@@ -34,14 +34,14 @@ let logindashboard = document.getElementById('reddash');
 
 logindashboard.addEventListener('click',function(e){
   e.preventDefault();
-  window.location.href = '../company/dashboard.html';
+  window.location.href = '../company/index.html';
 });
 
 
 createaccountbtn.addEventListener('click',function(e){
   e.preventDefault();
   //  check input field  its filled
-  if(cname.value != '' && ceoname.value != '' && detail.value != '' && caddress.value != '' && cphone.value != '' && c_city.value !='' && c_country.value !='' && cregion.value !=''){
+  if(cname.value != '' && ceoname.value != '' && detail.value != '' && cphone.value != '' && c_city.value !='' && c_country.value !='' && cregion.value !=''){
     AddCompany();
     storeuserole_in_usersrole_collection(useremail);
     createaccountbtn.style.display = 'none';
@@ -96,8 +96,10 @@ let docSnap = await addDoc( docRef,{
 // 2- add company to company collection
 async function AddCompany(){
   let value =   uploadimagetofirebasestorage();
+  let value2 =   uploadBusinessCard();
   // call the function that gets the returned value(downloaded imageurl from the function uploadimagetofirebasestorage  to this functions)
   let comp_logo =  await getdownloadedurlafteruploadimage(value);
+  let comp_business_card =  await getdownloadedurlafteruploadimage(value2);
   var ref = collection(db,'company');
   const docRef = await addDoc(
       ref,{
@@ -106,7 +108,7 @@ async function AddCompany(){
           comp_logo:comp_logo,
           comp_ceo_name:ceoname.value,
           comp_detail:detail.value,
-          comp_business_card:caddress.value,
+          comp_business_card:comp_business_card,
           comp_phone:cphone.value,
           comp_city:c_city.value,
           comp_region:cregion.value,
@@ -123,7 +125,6 @@ async function AddCompany(){
       cname.value = '';
       ceoname.value = '';
       detail.value = '';
-      caddress.value = '';
       cphone.value = '';
       c_city.value = '';
       cregion.value = '';
@@ -137,7 +138,6 @@ async function AddCompany(){
       cname.value = '';
       ceoname.value = '';
       detail.value = '';
-      caddress.value = '';
       cphone.value = '';
       c_city.value = '';
       cregion.value = '';
@@ -183,3 +183,36 @@ const a = await result;
 console.log('from below function ',a);
 return a;
 }
+
+//  add image to firebase storeage
+async function uploadBusinessCard(){
+  // const ref= app.storage().ref()
+  const file  =  comp_business_card.files[0];
+  const name = new Date() + '-' + file.name;
+  let downloadedimageurl= [];
+  let getdata;
+  let result;
+  // /create child refrence
+  const imageref = ref(storage,`image/${name}`);
+  // file metadata
+  const metadata = {
+      contentType: 'image/jpeg',
+    };
+    // 'file' comes from the Blob or File API
+    await uploadBytes(imageref, file,metadata).then((snapshot) => {
+      // const downloadurl = ref().getDownloadURL();
+      console.log('Image Uploaded Successfully');
+      getdata =  getDownloadURL(ref(storage, `image/${name}`))
+      .then((url) =>  {
+        // `url` is the download URL for 'images/stars.jpg'
+        return downloadedimageurl[0] = url;
+      })
+      .catch((error) => {
+        // Handle any errors
+        console.log(`error message: ${error}`);
+      });
+      return downloadedimageurl[0]
+    });
+    result = await getdata;
+    return result
+  }

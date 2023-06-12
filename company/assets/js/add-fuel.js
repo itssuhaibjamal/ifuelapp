@@ -87,3 +87,37 @@ async function AddFuel(){
       fuel_price.value = '';
     });
 }
+
+
+//1- add post to posts collection
+async function AddFuelHistory(){
+  var ref = collection(db,'history');
+  const docRef = await addDoc(
+    ref,{
+      fuel_litter:fuel_litter.value,
+      fuel_type:fuel_type.value,
+      fuel_price:fuel_price.value,
+      comp_associated_email:useremail,
+      comp_associated_id:userid,
+      created_date: created_date,
+    }
+    ).then(()=>{
+      errormsg.style.display = 'none';
+      successmsg.style.display = 'block';
+      successmsg.innerHTML = 'Data Added Successfully';
+      successmsg.innerText = fuel_type.value + ' New fuel added';
+      console.log("Successfully created the fuel");
+      fuel_litter.value = '';
+      fuel_type.value = '';
+      fuel_price.value = '';
+      // window.location.href = '../../register.html';
+    }).catch((error)=>{
+      errormsg.style.display = 'block';
+      successmsg.style.display = 'none';
+      errormsg.innerHTML = error;
+      errormsg.innerText = "something is not right "+error;
+      fuel_litter.value = '';
+      fuel_type.value = '';
+      fuel_price.value = '';
+    });
+}

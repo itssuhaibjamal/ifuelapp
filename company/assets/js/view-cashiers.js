@@ -1,61 +1,36 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import {getAuth , 
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword, onAuthStateChanged, signOut}
-  from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
-import {getFirestore,collection,getDocs,doc,updateDoc} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
-import {firebaseConfig} from './firebase.js';
+   // Import the functions you need from the SDKs you need
+   import { initializeApp} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+   import {getFirestore,collection,getDocs,doc,updateDoc,deleteDoc} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+   import {getAuth , 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+   import {firebaseConfig} from './firebase.js';
 
-// firebase intialization
-const app = initializeApp(firebaseConfig);
-// call the  get database method
-const db = getFirestore();
-const auth = getAuth(app);
-let tr = document.querySelector('#fuel_list');
-// check the auth change status then get the email of the user
-let companyemail = '';
-let userid;
-auth.onAuthStateChanged((user)=>{
-  if(user){
-    // console.log(user.uid);
-    companyemail = user.email;
-    userid = user.uid;
-  }
-});
+
+   // firebase intialization
+    const app = initializeApp(firebaseConfig);
+    
+        // call the  get database method
+    const db = getFirestore();
+    const auth = getAuth(app);
+   let tr = document.querySelector('#cashier_list');
+
+   
+   // check the auth change status then get the email of the user
+   let companyemail = '';
+   let userid;
+   auth.onAuthStateChanged((user)=>{
+       if(user){
+          // console.log(user.uid);
+          companyemail = user.email;
+          userid = user.uid;
+          
+          
+         
+       }
+      });
 //    function that display employee data
-
-async function ViewData() {
-  tr.innerHTML = ""; // Clear the HTML content before populating with new data
-
-  const currentUser = getCurrentUser(); // Replace getCurrentUser with your actual function to get the current logged-in user
-
-  const ref = collection(db, "customers");
-  const querySnapshot = await getDocs(query(ref, where("company_associated", "==", currentUser)));
-
-  if (querySnapshot.empty) {
-    tr.innerHTML = `<p class='text-center'>There is no data to be fetched for the current user</p>`;
-  } else {
-    let number = 1;
-    querySnapshot.forEach(doc => {
-      tr.innerHTML += `
-        <tr>
-          <td>${number}</td>
-          <td><img src='${doc.data().user_logo}' class='rounded-circle' width=75 height=75></td>
-          <td>${doc.data().user_fullname}</td>
-          <td>${doc.data().user_email}</td>
-          <td>${doc.data().user_phone}</td>
-          <td>${doc.data().created_date}</td>
-          <td>
-            <a href='view-single-customer.html?view=${doc.id}' class='btn btn-primary'>View</a>
-            <a href='view_service.html?delete=${doc.id}' class='btn btn-danger'>Delete</a>
-          </td>
-        </tr>
-      `;
-      number++;
-    });
-  }
-}
 async function Viewemployeedata(){
     var ref = collection(db,"users");
     tr.innerHTML= "<p class='d-flex'>Loading Please Wait...</p>";
@@ -63,32 +38,33 @@ async function Viewemployeedata(){
    try {
    const docSnap = await getDocs(ref);
 // check if collection that we are fetching if its empty excute the else statement
-   if(docSnap.empty){
+   if(docSnap.length){
        // console.log("db isn't empty");
-       tr.innerHTML = `<p class='text-center'>There is no data to fetched , please add new fuel to be displayed</p>`;
+       tr.innerHTML = `<p class='text-center'>There is no data to fetched , please add new data to be displayed</p>`;
     
    }
    // if its not empty  log this message
    else{
     tr.innerHTML = '';
    // console.log('Database is not empty');
-   let number = 1;
+   let number = 1;      
+        console.log(docSnap.empty);
+   
    docSnap.forEach(doc => {
+    //   console.log(companyemail);
       
-       
-      if(doc.data().comp_associated == companyemail){
+           if(doc.data().company_associated == companyemail){
         tr.innerHTML += `
 
         <tr>
         <td>${number}</td>
+        <td><img src='${doc.data().user_logo}' class="rounded-circle" width='50' height='50'></td>
         <td>${doc.data().user_fullname}</td>
         <td>${doc.data().user_email}</td>
         <td>${doc.data().user_gender}</td>
-        <td>${doc.data().comp_associated}</td>
+        <td>${doc.data().company_associated}</td>
         <td>${doc.data().created_date}</td>
-        <td class='d-flex'><a href="view-single-cashier.html?view=${doc.id}" class='btn btn-primary'>View</a>&numsp;
-        <a href='update-cashier.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;
-        <a href='view-cashiers.html?delete=${doc.id}' class='btn btn-danger'>Delete</a></td>
+        <td class='d-flex'><a href="view-single-cashier.html?view=${doc.id}" class='btn btn-primary'>View</a>&numsp;<a href='update-cashier.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;<a href='view-cashiers.html?delete=${doc.id}' class='btn btn-danger'>Delete</a></td>
         </tr>
         
     `;
@@ -97,6 +73,9 @@ async function Viewemployeedata(){
 
       }
       
+       
+  
+      
        number ++;
        
        
@@ -104,7 +83,7 @@ async function Viewemployeedata(){
 }
 } catch (error) {
     tr.innerHTML = `<p class="text-center">${error}</p>`;
-    console.log(doc.data().post_title);
+    console.log(doc.data().user_fullname);
    }
        
      
@@ -117,22 +96,20 @@ window.onload = Viewemployeedata();
 let url = window.location.search;
 
 // check if the url contains word update and have id
-let deleteurl = url.search('delete');
-
+let updateurl = url.search('delete');
 
 let uid = url.slice(8,28).toString();
-
-if(deleteurl == 1){
+// console.log(updateurl);
+if(updateurl == 1){
     async function delete_employee(){
 
-        deleteDoc(doc(db,'users',uid),{
-            delete_status:"true",
-            }).then(()=>{
-                alert('item deleted successfully');
-            }).catch(()=>{
-                console.log('failed to delete');
-                
-            });
+        const docRef  = doc(db,'users',uid);
+        deleteDoc(docRef).then(() =>{
+                alert('user data  deleted successfully');
+                window.location.href = 'view-cashier.html';
+        }).catch((e)=>{
+            alert('failed to delete user data',e);
+        });
     }
      delete_employee();
 }else{

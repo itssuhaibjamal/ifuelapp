@@ -52,7 +52,6 @@ async function viewdatainupdateform(){
     console.log("No such document!");
   } 
 }
-// update data form function
 async function updatefuels() {
   try {
     // get the id from url by slicing it (uid is company id)
@@ -61,7 +60,7 @@ async function updatefuels() {
 
     const docSnap = await getDoc(ref);
     if (docSnap.exists()) {
-      let oldfuel_litter = docSnap.data().fuel_litter;
+      let oldfuel_litter = parseFloat(docSnap.data().fuel_litter);
       let newfuel_litter = oldfuel_litter + parseFloat(fuel_litter.value);
 
       await updateDoc(ref, {
@@ -82,6 +81,7 @@ async function updatefuels() {
     errormsg.innerHTML = error;
   }
 }
+
 
 updatefuel.addEventListener('click', function(e) {
   e.preventDefault();

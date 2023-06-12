@@ -32,7 +32,11 @@ let registerAccountBtn = document.getElementById('registerAccount');
 registerAccountBtn.addEventListener('click',function(e){
   e.preventDefault();
   if(email.value != '' && pwd.value != '' && confirm_password.value != ''){
-    createUserwithEmailandPwd();
+    if(createUserwithEmailandPwd()){
+
+    }else{
+      // Logoutclass();
+    }
   }else{
     alert("the field are empty")
   }
@@ -51,31 +55,31 @@ redirectlogin.addEventListener('click',function(e){
 function createUserwithEmailandPwd(){
   if(pwd.value == confirm_password.value){
     createUserWithEmailAndPassword(auth,email.value,pwd.value).then(()=>{
-
+      const Logoutclass = async() =>{
+        await signOut(auth);
+        console.log('logout success');
+      }
+      Logoutclass();
     }).then(()=>{
       errormsg.style.display = 'none';
       successmsg.style.display = 'block';
       registerAccountBtn.style.display = 'none';
       email.style.display = 'none';
       pwd.style.display = 'none';
-      lblemail.style.display = 'none';
-      lblpwd.style.display = 'none';
+      confirm_password.style.display = 'none';
       loginpage.style.display = 'none';
-      redirectlogin.style.display = 'block';
       successmsg.innerText = 'user email and pwd are created login to your account';
+      redirectlogin.style.display = 'block';
       redirectlogin.innerText = 'login now';
       email.value = '';
       pwd.value = '';
       loginpage.innerText = '';
-      const Logoutclass = async() =>{
-        await signOut(auth);
-        console.log('logout success');
-      }
-      Logoutclass();
     }).catch((error)=>{
       successmsg.style.display = 'none';
       errormsg.style.display = 'block';
       errormsg.innerText = 'email and password are already exists';
+      redirectlogin.style.display = 'block';
+      redirectlogin.innerText = 'login now';
     });
   }else{
     successmsg.style.display = 'none';

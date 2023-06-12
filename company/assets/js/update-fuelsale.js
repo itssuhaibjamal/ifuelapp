@@ -65,35 +65,36 @@ displayCustomersName();
 // fuels information
 // customers information from the customers collection
 async function displayFuelsType(){
-    let Docref = collection(db,'fuels');
-    let Docsnap = await getDocs(Docref);
-    Docsnap.forEach(docs => {
-        var option = document.createElement('option');
-        option.text = docs.data().fuel_type;
-        fuel_type.options.add(option)
-    });
-    // check the change of the value in select element
-    fuel_type.addEventListener('change',(event)=>{
-        getCurrentFuelInfo(event.target.value)
-    });
+  let Docref = collection(db,'fuels');
+  let Docsnap = await getDocs(Docref);
+  Docsnap.forEach(docs => {
+      var option = document.createElement('option');
+      option.text = docs.data().fuel_type;
+      fuel_type.options.add(option)
+  });
+  // check the change of the value in select element
+  fuel_type.addEventListener('change',(event)=>{
+      getCurrentFuelInfo(event.target.value)
+  });
 }
 
 async function getCurrentFuelInfo(name){
-    let Docref = collection(db,'fuels');
-    let result = await getDocs(Docref);
-    result.forEach(doc =>{
-        // check if the select element inside the subscription form
-        if(doc.data().fuel_type == name){
-            console.log(idinput.textContent);
-            idinput.innerHTML =doc.id;
-                fuel_price.value= doc.data().fuel_price;
-                total_price.value = doc.data().fuel_price * fuel_litter.value;
-            }
-        });
-        // console.log(result.id);
+  let Docref = collection(db,'fuels');
+  let result = await getDocs(Docref);
+  result.forEach(doc =>{
+      // check if the select element inside the subscription form
+      if(doc.data().fuel_type == name){
+          console.log(idinput.textContent);
+          idinput.innerHTML =doc.id;
+              fuel_price.value= doc.data().fuel_price;
+              total_price.value = doc.data().fuel_price * fuel_litter.value;
+          }
+      });
+      // console.log(result.id);
 }
 // display company names in the select form
 displayFuelsType();
+
 // getting the current user login email and uid
 let useremail = '';
 let userid;
@@ -151,58 +152,61 @@ async function viewdatainupdateform(){
 
 
 // Update data function
-async function updateFuelSale() {
+async function UpdateFuelSale() {
   try {
     let uid = url.slice(8, 28); // Assuming the UID is 20 characters long
     const docRef = doc(db, "fuelsale", uid);
     const fuelSaleDoc = await getDoc(docRef);
 
     if (fuelSaleDoc.exists()) {
-      const oldFuelLitter = fuelSaleDoc.data().fuel_litter;
-      const newFuelLitter = fuel_litter.value; // Specify the new fuel_litter value you want to update
+      // Get the updated values
+      const newFuelLitter = fuel_litter.value;
+      const newCustomerName = customer_name.value;
+      const newCustomerEmail = customer_email.value;
+      const newCustomerPhone = customer_phone.value;
+      const newCustomerType = customer_type.value;
+      const newPaymentMethod = payment_method.value;
 
-      // Calculate the difference in fuel_litter
-      const fuelLitterDifference =  oldFuelLitter - newFuelLitter;
+      // Update the "fuelsale" collection only if the fuel_type matches
+      if (fuelSaleDoc.data().fuel_type === fuel_type.value) {
+        // Calculate the difference in fuel_litter
+        const fuelLitterDifference = newFuelLitter - fuelSaleDoc.data().fuel_litter;
 
-      // Update the "fuelsale" collection
-      await updateDoc(docRef, {
-        fuel_litter: newFuelLitter
-      });
-
-      // Update the "fuels" collection
-      const fuelsRef = collection(db, "fuels");
-      const fuelsQuerySnapshot = await getDocs(fuelsRef);
-
-      if (!fuelsQuerySnapshot.empty) {
-        const fuelsDoc = fuelsQuerySnapshot.docs[0];
-        const oldFuelsLitter = fuelsDoc.data().fuel_litter;
-
-        // Calculate the new fuel_litter value for the "fuels" collection
-        const newFuelsLitter = oldFuelsLitter + fuelLitterDifference;
-
-        // Update the "fuels" collection with the new fuel_litter value
-        await updateDoc(fuelsDoc.ref, {
-          fuel_litter: newFuelsLitter
+        // Update the "fuelsale" collection
+        await updateDoc(docRef, {
+          fuel_litter: newFuelLitter,
+          customer_name: newCustomerName,
+          customer_email: newCustomerEmail,
+          customer_phone: newCustomerPhone,
+          customer_type: newCustomerType,
+          payment_method: newPaymentMethod,
+          total_price: total_price.value
         });
-      }
-      // Update the "fuels" collection
-      const loanRef = collection(db, "loan");
-      const loanQuerySnapshot = await getDocs(loanRef);
 
-      if (!loanQuerySnapshot.empty) {
-        const fuelsDoc = loanQuerySnapshot.docs[0];
-        const oldFuelsLitter = fuelsDoc.data().fuel_litter;
+        // Update the "fuels" collection where fuel_type matches
+        const fuelsRef = collection(db, "fuels");
+        const fuelsQuerySnapshot = await getDocs(fuelsRef);
 
-        // Calculate the new fuel_litter value for the "fuels" collection
-        const newFuelsLitter = oldFuelsLitter + fuelLitterDifference;
+        fuelsQuerySnapshot.forEach(async (fuelsDoc) => {
+          if (fuelsDoc.data().fuel_type === fuel_type.value) {
+            const oldFuelsLitter = fuelsDoc.data().fuel_litter;
 
-        // Update the "fuels" collection with the new fuel_litter value
-        await updateDoc(fuelsDoc.ref, {
-          fuel_litter: newFuelsLitter
+            // Calculate the new fuel_litter value for the "fuels" collection
+            const newFuelsLitter = oldFuelsLitter - fuelLitterDifference;
+
+            // Update the "fuels" collection with the new fuel_litter value
+            await updateDoc(fuelsDoc.ref, {
+              fuel_litter: newFuelsLitter
+            });
+          }
         });
-      }
 
-      console.log("Fuel sale updated successfully");
+        console.log("Fuel sale updated successfully");
+        window.location.href = "view-fuelsale.html";
+        alert("Fuel sale updated successfully");
+      } else {
+        console.log("No matching fuel type!");
+      }
     } else {
       console.log("No such document!");
     }
@@ -213,6 +217,8 @@ async function updateFuelSale() {
 
 
 
+
+
 submitbtn.addEventListener('click',function() {
-    updateFuelSale();
+  UpdateFuelSale();
 })

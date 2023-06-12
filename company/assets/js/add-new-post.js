@@ -59,7 +59,7 @@ async function AddPost(){
       post_title:post_title.value,
       fuel_type:fuel_type.value,
       fuel_price:fuel_price.value,
-      comp_associated_email:useremail,
+      company_associated:useremail,
       comp_associated_id:userid,
       created_date: created_date,
     }

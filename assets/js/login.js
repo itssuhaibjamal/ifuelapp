@@ -70,10 +70,11 @@ async function CheckUserRole(useremail) {
     window.location = '../../create-profile-company.html';
   } else if (userRole === 'admin') {
     console.log('Welcome admin');
+    window.location = '../../admin/index.html';
     successmsg.innerHTML = 'Sorry, you are not allowed to access the dashboard.';
   } else if (userRole === 'company') {
     console.log('Welcome company');
-    window.location = '../company/dashboard.html';
+    window.location = '../company/index.html';
     email.value = '';
     pwd.value = '';
   } else {

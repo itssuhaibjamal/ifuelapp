@@ -42,6 +42,15 @@ let pwd = document.getElementById('comp_pass');
 let confirm_pass = document.getElementById('confirm_pass');
 let createaccountbtn = document.getElementById('createadminaccount');
 
+admin_email.addEventListener('change',(event)=>{
+  getCurrentFuelInfo(event.target.value)
+});
+
+async function getCurrentFuelInfo(name){
+  email.value = admin_email.value
+      // console.log(result.id);
+}
+
 // check the auth change status then get the email of the user
 let useremail = '';
 let userid;
@@ -202,18 +211,12 @@ createaccountbtn.addEventListener('click',function(e){
 // auth for the applogin
 function createUserwithEmailandPwd(){
   createUserWithEmailAndPassword(auth,email.value,pwd.value).then(()=>{
-
   }).then(()=>{
     console.log('user email and pwd are created');
     error_msg.style.display = 'none';
     success_msg.style.display = 'block';
     success_msg.innerHTML = 'this account ' + admin_email.value + "  and password is created successfully";
     success_msg.innerText = 'this account ' + admin_email.value + "  and password is created successfully";
-    const Logoutclass = async() =>{
-      await signOut(auth);
-      console.log('logout success');
-    }
-    Logoutclass();
   }).catch((error)=>{
     console.log('error from add-cashier.js in company folder: ' + error);
     success_msg.style.display = 'none';

@@ -1,15 +1,14 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-// TODO: Add SDKs for Firebase products that you want to use
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 // https://firebase.google.com/docs/web/setup#available-libraries
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAICD3wKBmfbFSGfDw1Xgb03wVrghU6yg0",
-  authDomain: "mytests-6af5d.firebaseapp.com",
-  projectId: "mytests-6af5d",
-  storageBucket: "mytests-6af5d.appspot.com",
-  messagingSenderId: "361737606126",
-  appId: "1:361737606126:web:87c246f954ea7a38f0f4ff"
+  apiKey: "AIzaSyCJktsNCH-OfVd_SSJDjCRixdcoI8QWCm4",
+  authDomain: "lfuelapplication.firebaseapp.com",
+  projectId: "lfuelapplication",
+  storageBucket: "lfuelapplication.appspot.com",
+  messagingSenderId: "795949839745",
+  appId: "1:795949839745:web:872abf9948eaa7a0b3a480"
 };
 
 

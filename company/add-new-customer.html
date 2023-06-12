@@ -36,7 +36,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="dashboard.html" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/ifuel_logo-01.png" alt="iFuelApp-logo" style="position:relative; top:6px;">
         <span class="d-none d-lg-block"><span style="font-size: 18px; color: black;">iFuelApp</span></span>
       </a>
@@ -143,6 +143,12 @@
             </a>
           </li>
         </ul>
+        <li>
+          <a href="view-loan.html">
+            <i class="bi bi-circle"></i><span>View Loans</span>
+          </a>
+        </li>
+      </ul>
       </li><!-- End Customers Nav -->
 
       <li class="nav-item">
@@ -158,11 +164,6 @@
           <li>
             <a href="view-customers.html">
               <i class="bi bi-circle"></i><span>View customers</span>
-            </a>
-          </li>
-          <li>
-            <a href="view-new-customers.html">
-              <i class="bi bi-circle"></i><span>View new customers</span>
             </a>
           </li>
         </ul>
@@ -246,30 +247,35 @@
               <p class="bg-success py-1 text-white" id="successmsg" style="display:none">helo</p>
               <form class="row g-3">
                 <div class="col-md-6">
-                  <input type="email" class="form-control" id="customer_name" placeholder="Customer Name">
+                  <label class="form-label"><strong>Customer Fullname</strong></label>
+                  <input type="email" class="form-control" id="customer_name">
                 </div>
                 <div class="col-md-6">
+                  <label class="form-label"><strong>Customer Image</strong></label>
                   <input type="file" class="form-control" id="customer_logo">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="comp_ceo_name" placeholder="C.E.O Name">
+                  <label class="form-label"><strong>Customer Document</strong></label>
+                  <input type="file" class="form-control" id="cust_docs" placeholder="C.E.O Name">
                 </div>
                 <div class="col-md-6">
-                  <input type="email" class="form-control" id="customer_email" placeholder="Customer Email">
-                </div>
-                <div class="col-12">
-                  <textarea class="form-control" id="comp_detail"  cols="3" rows="3" placeholder="Detail"></textarea>
+                  <label class="form-label"><strong>Customer Email</strong></label>
+                  <input type="email" class="form-control" id="customer_email">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="customer_phone" placeholder="Phone">
+                  <label class="form-label"><strong>Customer Phone</strong></label>
+                  <input type="text" class="form-control" id="customer_phone">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="customer_city" placeholder="City">
+                  <label class="form-label"><strong>Customer City</strong></label>
+                  <input type="text" class="form-control" id="customer_city">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="customer_region" placeholder="Region">
+                  <label class="form-label"><strong>Customer Region</strong></label>
+                  <input type="text" class="form-control" id="customer_region">
                 </div>
                 <div class="col-md-6">
+                  <label class="form-label"><strong>Customer Country</strong></label>
                   <select id="customer_country" class="form-select">
                     <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -516,7 +522,7 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
                   </select>
-                </div> 
+                </div>
                 <div class="text-center">
                   <button type="submit" id="createnewcustomer" class="btn btn-primary">Create new company</button>
                   <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
@@ -524,30 +530,34 @@
               </form><!-- End No Labels Form -->
             </div>
           </div>
-          <div class="card">
+        </div>
+        <div class="col-lg-8">
+          <div class="card" id="createcustomer">
             <div class="card-body">
-              <h5 class="card-title">Create new customer</h5>
-              
+              <h5 class="card-title">Company Details</h5>
               <p class="bg-danger py-1 text-white" id="error-msg" style="display:none">helo</p>
-              <p class="bg-success py-1 text-white" id="success-msg" style="display:none">heloooo</p>
+              <p class="bg-success py-1 text-white" id="success-msg" style="display:none">helo</p>
               <form class="row g-3">
                 <div class="col-md-12">
-                  <input type="email" class="form-control" id="email" placeholder="Customer Email">
+                  <label class="form-label"><strong>Customer Email</strong></label>
+                  <input type="email" class="form-control" id="email" readonly>
                 </div>
                 <div class="col-md-6">
-                  <input type="password" class="form-control" id="comp_pass" placeholder="Password">
+                  <label class="form-label"><strong>Password</strong></label>
+                  <input type="password" class="form-control" id="comp_pass">
                 </div>
                 <div class="col-md-6">
-                  <input type="password" class="form-control" id="confirm_pass" placeholder="Confirm Password">
+                  <label class="form-label"><strong>Confirm Password</strong></label>
+                  <input type="password" class="form-control" id="confirm_pass">
                 </div>
                 <div class="text-center">
-                  <button type="submit" id="createcustomeraccount" class="btn btn-primary">Submit</button>
+                  <button type="submit" id="createcustomeraccount" class="btn btn-primary">Create new company</button>
+                  <!-- <button type="reset" class="btn btn-secondary">Reset</button> -->
                 </div>
-              </form><!-- Create new company Form -->
+              </form><!-- End No Labels Form -->
             </div>
           </div>
         </div>
-      </div>
     </section>
   </main><!-- End #main -->
 
@@ -578,7 +588,7 @@
   <!--admins .js files-->
   <script type="module" src="assets/js/add-new-customer.js"></script>
   <script type="module" src="assets/js/profile-data.js"></script>
-  <!-- <script type="module" src="assets/js/checkstate.js"></script> -->
+  <script type="module" src="assets/js/checkstate.js"></script>
   <!-- <script type="module" src="assets/js/checkstatus.js"></script> -->
   <script type="module" src="assets/js/logout.js"></script>
 

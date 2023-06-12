@@ -31,6 +31,14 @@ let c_city = document.getElementById('comp_city');
 let cregion = document.getElementById('comp_region');
 let c_country = document.getElementById('comp_country');
 
+email.addEventListener('change',(event)=>{
+  getCurrentFuelInfo(event.target.value)
+});
+
+async function getCurrentFuelInfo(name){
+  comp_email.value = email.value
+      // console.log(result.id);
+}
 
 // buttons to submit and the messages
 let createaccountbtn = document.getElementById('createnewcompany');

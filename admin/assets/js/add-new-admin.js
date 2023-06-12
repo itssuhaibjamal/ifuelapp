@@ -42,6 +42,15 @@ let successmsg = document.getElementById('successmsg');
 let error_msg = document.getElementById('error-msg');
 let success_msg = document.getElementById('success-msg');
 
+email.addEventListener('change',(event)=>{
+  getCurrentFuelInfo(event.target.value)
+});
+
+async function getCurrentFuelInfo(name){
+  comp_email.value = email.value
+}
+
+// create account btn on click
 createaccountbtn.addEventListener('click',function(e){
   e.preventDefault();
   //  check input field  its filled
@@ -124,7 +133,6 @@ async function AddAdmin(){
       console.log("Successfully created the admin");
       cname.value = '';
       ceoname.value = '';
-      comp_logo.value = '';
       comp_email.value = '';
       cphone.value = '';
       c_city.value = '';
@@ -138,7 +146,6 @@ async function AddAdmin(){
       errormsg.innerText = "error msg"+error;
       cname.value = '';
       ceoname.value = '';
-      comp_logo.value = '';
       comp_email.value = '';
       cphone.value = '';
       c_city.value = '';

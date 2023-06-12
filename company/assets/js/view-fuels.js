@@ -4,7 +4,7 @@ import {getAuth ,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword, onAuthStateChanged, signOut}
   from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
-import {getFirestore,collection,getDocs,doc,updateDoc} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+  import {getFirestore,collection,getDocs,doc,updateDoc,deleteDoc,getDoc,addDoc,getCountFromServer} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 import {firebaseConfig} from './firebase.js';
 
 // firebase intialization
@@ -97,6 +97,7 @@ if(deleteurl == 1){
             delete_status:"true",
             }).then(()=>{
                 alert('item deleted successfully');
+                window.location("view-fuels.html");
             }).catch(()=>{
                 console.log('failed to delete');
                 

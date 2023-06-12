@@ -16,16 +16,15 @@ const storage = getStorage();
 
 
 // intialize input data from the form
-let email = document.getElementById('email');
+let email = document.getElementById('customer_email');
 let pwd = document.getElementById('comp_pass');
 let confirm_pass = document.getElementById('confirm_pass');
 
 //inputs from the company create account
-let comp_email = document.getElementById('customer_email');
+let comp_email = document.getElementById('email');
 let cname = document.getElementById('customer_name');
 let comp_logo = document.getElementById('customer_logo');
-let ceoname = document.getElementById('comp_ceo_name');
-let customer_detail = document.getElementById('customer_detail');
+let cust_docs = document.getElementById('cust_docs');
 let cphone = document.getElementById('customer_phone');
 let c_city = document.getElementById('customer_city');
 let cregion = document.getElementById('customer_region');
@@ -34,20 +33,19 @@ let c_country = document.getElementById('customer_country');
 
 // buttons to submit and the messages
 let createaccountbtn = document.getElementById('createnewcustomer');
-let createaccount = document.getElementById('createcustomeraccount');
+let createcustomeraccount = document.getElementById('createcustomeraccount');
+
 let errormsg = document.getElementById('errormsg');
 let successmsg = document.getElementById('successmsg');
 
 let error_msg = document.getElementById('error-msg');
 let success_msg = document.getElementById('success-msg');
 
-//create a customer account details
-let createcustomer = document.getElementById('createcustomer');
 
 createaccountbtn.addEventListener('click',function(e){
   e.preventDefault();
   //  check input field  its filled
-  if(cname.value != '' && ceoname.value != ''  && cphone.value != '' && c_city.value !='' && c_country.value !='' && cregion.value !='' && comp_logo.value !=''){
+  if(cname.value != '' && cust_docs.value != ''  && cphone.value != '' && c_city.value !='' && c_country.value !='' && cregion.value !='' && comp_logo.value !=''){
     AddCompany();
     storeuserole_in_usersrole_collection(comp_email);
     
@@ -60,7 +58,28 @@ createaccountbtn.addEventListener('click',function(e){
   }
 });
 
+email.addEventListener('change',(event)=>{
+  getCurrentFuelInfo(event.target.value)
+});
 
+async function getCurrentFuelInfo(name){
+  comp_email.value = email.value
+      // console.log(result.id);
+}
+
+// create customer account
+createcustomeraccount.addEventListener('click',function(e){
+  e.preventDefault();
+  //  check input field  its filled
+  if(pwd.value != '' && email.value != ''){
+    createUserwithEmailandPwd();
+  }
+  else{
+    successmsg.style.display = 'none';
+    errormsg.style.display = 'block';
+    errormsg.innerHTML = 'Please Fill The  Form Email and Password';
+  }
+});
 
 
 // check state of the use
@@ -89,8 +108,6 @@ let docSnap = await addDoc( docRef,{
 }).catch((err)=>{
    console.log("The role isn't created " + err);
    cname.value = '';
-   ceoname.value = '';
-   comp_email.value = '';
    cphone.value = '';
    c_city.value = '';
    cregion.value = '';
@@ -106,19 +123,21 @@ let docSnap = await addDoc( docRef,{
 async function AddCompany(){
   var ref = collection(db,'customers');
   let value =   uploadimagetofirebasestorage();
+  let value2 =   uploadCustomerDocs();
   // call the function that gets the returned value(downloaded imageurl from the function uploadimagetofirebasestorage  to this functions)
   let comp_logo =  await getdownloadedurlafteruploadimage(value);
+  let cust_docs =  await getdownloadedurlafteruploadimage(value2);
       const docRef = await addDoc(
         ref,{
           user_fullname:cname.value,
           user_logo:comp_logo,
           user_email:comp_email.value,
-          user_ceo_name:ceoname.value,
+          user_document:cust_docs,
           user_phone:cphone.value,
           user_city:c_city.value,
           user_region:cregion.value,
           user_country:c_country.value,
-          comp_associated: useremail,
+          company_associated: useremail,
           id:userid,
           created_date: created_date,
         }
@@ -129,8 +148,6 @@ async function AddCompany(){
         successmsg.innerText = cname.value + ' Company Profile Create Successfully';
         console.log("Successfully created the company");
         cname.value = '';
-        ceoname.value = '';
-        comp_email.value = '';
         cphone.value = '';
         c_city.value = '';
         cregion.value = '';
@@ -142,8 +159,6 @@ async function AddCompany(){
         errormsg.innerHTML = error;
         errormsg.innerText = "error msg "+error;
         cname.value = '';
-        ceoname.value = '';
-        comp_email.value = '';
         cphone.value = '';
         c_city.value = '';
         cregion.value = '';
@@ -153,18 +168,18 @@ async function AddCompany(){
 
 
 
-//this btn is for creating account for company(company will have ability to login using the dashboard)
-createaccount.addEventListener('click',function(e){
-  e.preventDefault();
-  // clicked
-  if(email.value != '' && pwd.value != ''){
-    // create employe account ((login credentails))
-    createUserwithEmailandPwd();
-    createcustomer.style.display = 'block';
-  }else{
-    alert('empty email and password field')
-  }
-})
+// //this btn is for creating account for company(company will have ability to login using the dashboard)
+// createaccount.addEventListener('click',function(e){
+//   e.preventDefault();
+//   // clicked
+//   if(email.value != '' && pwd.value != ''){
+//     // create employe account ((login credentails))
+//     createUserwithEmailandPwd();
+//     createcustomer.style.display = 'block';
+//   }else{
+//     alert('empty email and password field')
+//   }
+// })
 
 // 2- create account for the employee
 // auth for the applogin
@@ -178,7 +193,6 @@ function createUserwithEmailandPwd(){
       success_msg.style.display = 'block';
       success_msg.innerHTML = 'Data Added Successfully';
       success_msg.innerText = 'This account ' + email.value +  ' and Password are Created Successfully';
-      email.value = '';
       pwd.value = '';
       confirm_pass.value = '';
     }).catch((error)=>{
@@ -186,7 +200,6 @@ function createUserwithEmailandPwd(){
       success_msg.style.display = 'none';
       error_msg.style.display = 'block';
       error_msg.innerText = 'This account ' + email.value +  ' is already exists';
-      email.value = '';
       pwd.value = '';
       confirm_pass.value = '';
     });
@@ -239,4 +252,38 @@ async function getdownloadedurlafteruploadimage(result){
 const a = await result;
 console.log('from below function ',a);
 return a;
+}
+
+
+// upload customer documents
+async function uploadCustomerDocs(){
+  // const ref= app.storage().ref()
+  const file  =  cust_docs.files[0];
+  const name = new Date() + '-' + file.name;
+  let downloadedimageurl= [];
+  let getdata;
+  let result;
+  // /create child refrence
+  const imageref = ref(storage,`images/${name}`);
+  // file metadata
+  const metadata = {
+    contentType: 'image/jpeg',
+  };
+  // 'file' comes from the Blob or File API
+  await uploadBytes(imageref, file,metadata).then((snapshot) => {
+    // const downloadurl = ref().getDownloadURL();
+    console.log('Image Uploaded Successfully');
+    getdata =  getDownloadURL(ref(storage, `images/${name}`))
+    .then((url) =>  {
+      // `url` is the download URL for 'images/stars.jpg'
+      return downloadedimageurl[0] = url;
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.log(`error message: ${error}`);
+    });
+    return downloadedimageurl[0]
+  });
+  result =  getdata;
+  return result
 }
