@@ -1,105 +1,110 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-import {getFirestore,collection,getDocs,doc} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
+import {getAuth , 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword, onAuthStateChanged, signOut}
+  from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+import {getFirestore,collection,getDocs,doc,updateDoc} from"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js";
 import {firebaseConfig} from './firebase.js';
+
 // firebase intialization
 const app = initializeApp(firebaseConfig);
-
 // call the  get database method
 const db = getFirestore();
-
-let tr = document.querySelector('#comp_list');
-async function ViewData(){
-  var ref = collection(db,"customers");
-  try {
-    const docSnap = await getDocs(ref);
-    // check if collection that we are fetching if its empty excute the else statement
-    if(docSnap.empty){
-      // console.log("db isn't empty");
-      tr.innerHTML = `<p class='text-center'>There is no data to fetched , please add new data to be displayed</p>`;
-     
-    }
-    // if its not empty  log this message
-    else{
-      // console.log('Database is not empty');
-      let number = 1;
-      docSnap.forEach(doc => {
+const auth = getAuth(app);
+let tr = document.querySelector('#customer_list');
+// check the auth change status then get the email of the user
+let companyemail = '';
+let userid;
+auth.onAuthStateChanged((user)=>{
+  if(user){
+    // console.log(user.uid);
+    companyemail = user.email;
+    userid = user.uid;
+  }
+});
+//    function that display employee data
+async function Viewemployeedata(){
+    var ref = collection(db,"customers");
+    tr.innerHTML= "<p class='d-flex'>Loading Please Wait...</p>";
+    
+   try {
+   const docSnap = await getDocs(ref);
+// check if collection that we are fetching if its empty excute the else statement
+   if(docSnap.empty){
+       // console.log("db isn't empty");
+       tr.innerHTML = `<p class='text-center'>There is no data to fetched , please add new fuel to be displayed</p>`;
+    
+   }
+   // if its not empty  log this message
+   else{
+    tr.innerHTML = '';
+   // console.log('Database is not empty');
+   let number = 1;
+   docSnap.forEach(doc => {
+      
+       
+      if(doc.data().id == userid){
         tr.innerHTML += `
+
         <tr>
         <td>${number}</td>
-        <td><img src='${doc.data().user_logo}' class='rounded-circle' width=75 height=75></td>
+        <td><img src="${doc.data().user_logo}" class="rounded-circle" width=50 height=50/></td>
         <td>${doc.data().user_fullname}</td>
+        <td>${doc.data().user_gender}</td>
         <td>${doc.data().user_email}</td>
         <td>${doc.data().user_phone}</td>
         <td>${doc.data().created_date}</td>
-        <td>
-        <a href='view-single-customer.html?view=${doc.id}' class='btn btn-primary'>View</a>
-        <a href='view_service.html?delete=${doc.id}' class='btn btn-danger'>Delete</a>
-        </td>
+        <td class='d-flex'><a href="view-single-customer.html?view=${doc.id}" class='btn btn-primary'>View</a>&numsp;
+        <a href='update-fuel.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;
+        <a href='view-fuels.html?delete=${doc.id}' class='btn btn-danger'>Delete</a></td>
         </tr>
-        `;
-        number ++;
-      }); 
-    }
-  } catch (error) {
-    tr.innerHTML = '<p class="text-center">Error accoured while display data please refresh the page</p>';
-  }
-}
+        
+    `;
+      }else{
+        // tr.innerHTML = 'Empty Table Please Enter Data'
 
-//  load website  or run this function when page is loaded
-window.onload = ViewData();
-//  check url if its equals view pass data to the view form
-function displayselectdata () {
-  // get the last of the url start from ? symbol
-  let url = window.location.search;
-  // check if the url contains word view and have id
-  let check = url.search('view');
-  // check if the url contains word update and have id
-  let updateurl = url.search('update');
-  // intialize input model variables comes fomt view
-  let comp_logo = document.getElementById('comp_logo');
-  let comp_name = document.getElementById('comp_name');
-  let comp_ceo_name = document.getElementById('comp_ceo_name');
-  let comp_detail = document.getElementById('comp_detail');
-  let comp_phone = document.getElementById('comp_phone');
-  let comp_city = document.getElementById('comp_city');
-  let comp_region = document.getElementById('comp_region');
-  let comp_country = document.getElementById('comp_country');
-  //   get the id from url by slicing it  (uid is company id)
-  let uid = url.slice(6,26);
-  // read the company collection for particular clicked id (company id)
-  async function ViewData(){
-    var ref = collection(db,"customers");
-    const displayselectedcompany = await getDocs(ref);
-    displayselectedcompany.forEach(doc => {
-      // companylogo.innerHTML = `${doc.data()}`;
-      // check if doc.id  from firestore collection equals the uid or(company id)
-      if(doc.id == uid){
-        comp_logo.innerHTML = `${doc.data().comp_logo}`;
-        comp_name.innerHTML = `${doc.data().comp_name}`;
-        comp_ceo_name.innerHTML = `${doc.data().comp_ceo_name}`;
-        comp_detail.innerHTML = `${doc.data().comp_detail}`;
-        comp_phone.innerHTML = `${doc.data().comp_phone}`;
-        comp_city.innerHTML = `${doc.data().comp_city}`;
-        comp_region.innerHTML = `${doc.data().comp_region}`;
-        comp_country.innerHTML = `${doc.data().comp_country}`;
       }
-    });
-    //   console.log(result.includes(uid)? true : false);
-    // console.log(result.valueOf());
-  }
-  // update singlecompany details
-  function updatesinglecompanydetails()
-  {
-    // put update logic here
-    alert('update word found in url');
-  }
-  // run functions based on web browser
-  if(check == 1){
-    ViewData();
-  }
-  else if(updateurl == 1){
-
-  }
+      
+       number ++;
+       
+       
+    }); 
 }
-displayselectdata();
+} catch (error) {
+    tr.innerHTML = `<p class="text-center">${error}</p>`;
+    console.log(doc.data().fuel_type);
+   }
+       
+     
+}
+
+window.onload = Viewemployeedata();
+
+
+// get the last of the url start from ? symbol
+let url = window.location.search;
+
+// check if the url contains word update and have id
+let deleteurl = url.search('delete');
+
+
+let uid = url.slice(8,28).toString();
+
+if(deleteurl == 1){
+    async function delete_employee(){
+
+        deleteDoc(doc(db,'customers',uid),{
+            delete_status:"true",
+            }).then(()=>{
+                alert('item deleted successfully');
+            }).catch(()=>{
+                console.log('failed to delete');
+                
+            });
+    }
+     delete_employee();
+}else{
+    // console.log(updateurl);
+    
+}

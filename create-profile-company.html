@@ -38,7 +38,7 @@
       <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="col-lg-8 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
@@ -46,38 +46,59 @@
                   <span class="d-none d-lg-block">iFuelApp</span>
                 </a>
               </div><!-- End Logo -->
-
               <div class="card mb-3">
-
                 <div class="card-body">
-
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4" id="fillaccount">Welcome Back!</h5>
-                    <p class="text-center small">Enter your personal details to login account</p>
+                    <h5 class="card-title text-center pb-0 fs-4" id="htext">Create Company Profile</h5>
+                    <p class="text-center small" id="createform">Enter your company details to create profile</p>
                   </div>
-
                   <form class="row g-3 needs-validation" novalidate>
                     <p class="bg-danger py-1 text-white" id="errormsg" style="display:none">helo</p>
                     <p class="bg-success py-1 text-white" id="successmsg" style="display:none">helo</p>
-                    <div class="col-12">
-                      <input type="email" name="email" class="form-control" id="email" placeholder="Your email" required>
-                      <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                   <div class="col-6" id="createform">
+                      <input type="text" name="password" class="form-control" id="comp_name" placeholder="Company name" required>
+                      <div class="invalid-feedback">Please enter Company name!</div>
                     </div>
-
-                    <div class="col-12">
-                      <input type="password" name="password" class="form-control" id="pwd"  placeholder="Your password" required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                    <div class="col-6" id="createform">
+                      <input type="file" name="password" class="form-control" id="comp_logo" required>
+                      <div class="invalid-feedback">Please enter company logo!</div>
                     </div>
-
+                    <div class="col-6" id="createform">
+                      <input type="text" name="password" class="form-control" id="comp_business" placeholder="Company Business ID" required>
+                      <div class="invalid-feedback">Please enter Ceo name!</div>
+                    </div>
+                    <div class="col-6" id="createform">
+                      <input type="text" name="password" class="form-control" id="comp_ceoname" placeholder="Ceo name" required>
+                      <div class="invalid-feedback">Please enter Ceo name!</div>
+                    </div>
+                    <div class="col-12" id="createform">
+                        <textarea class="form-control" id="comp_detail"  cols="4" rows="4" placeholder="Company Details"></textarea>
+                      <div class="invalid-feedback">Please enter your Detial!</div>
+                    </div>
+                    <div class="col-6" id="createform">
+                      <input type="text" name="password" class="form-control" id="comp_phone" placeholder="Company Phone" required>
+                      <div class="invalid-feedback">Please enter Company Phone!</div>
+                    </div>
+                    <div class="col-6" id="createform">
+                      <input type="text" name="password" class="form-control" id="comp_city" placeholder="Company City" required>
+                      <div class="invalid-feedback">Please enter Company City!</div>
+                    </div>
+                    <div class="col-6" id="createform">
+                      <input type="text" name="password" class="form-control" id="comp_region" placeholder="Company Region" required>
+                      <div class="invalid-feedback">Please enter Company region!</div>
+                    </div>
+                    <div class="col-6" id="createform">
+                      <input type="text" name="password" class="form-control" id="comp_country" placeholder="Company Country" required>
+                      <div class="invalid-feedback">Please enter Company country!</div>
+                    </div>
+                    <div class="col-12" id="createform">
+                      <button class="btn btn-primary w-100" id="createaccount" type="submit">Create Account</button>
+                    </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" id="reddash" style="display:none" type="submit">Go to the Dashboard</button>
                     </div>
-                    
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" id="createaccount" type="submit">Login</button>
-                    </div>
-                    <div class="col-12">
-                      <p class="small mb-0" id="loginlink">Already have an account? <a href="signup.html">Sign Up</a></p>
+                      <p class="small mb-0">Already have an account? <a href="login.html">Log in</a></p>
                     </div>
                   </form>
 
@@ -110,7 +131,8 @@
 
   <!-- Template Main JS File -->
   <script src="admin/assets/js/main.js"></script>
-  <script type="module" src="assets/js/login.js"></script>
+  <script type="module" src="assets/js/checkstate.js"></script>
+  <script type="module" src="assets/js/create-comp-profile.js"></script>
 
 </body>
 

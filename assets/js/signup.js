@@ -15,44 +15,71 @@ const auth = getAuth(app);
 const storage = getStorage();
 
 
-// intialize input data from the form
 let email = document.getElementById('email');
-let pwd = document.getElementById('comp_pass');
-let confirm_pass = document.getElementById('confirm_pass');
+let pwd = document.getElementById('pwd');
+let confirm_password = document.getElementById('confirm_password');
 
-// creating the firebase auth of the admin
-let createaccount = document.getElementById('createnewadmin');
-
-// error or success messages
 let errormsg = document.getElementById('errormsg');
 let successmsg = document.getElementById('successmsg');
+let redirectlogin = document.getElementById('loginpage');
+let lblemail = document.getElementById('lblemail');
+let lblpwd = document.getElementById('lblpwd');
+let loginpage = document.getElementById('loginlink');
 
 
+let registerAccountBtn = document.getElementById('registerAccount');
 
-createaccount.addEventListener('click',function(e){
+registerAccountBtn.addEventListener('click',function(e){
   e.preventDefault();
-  // clicked
-  if(email.value != '' && pwd.value != ''){
-    // create employe account ((login credentails))
+  if(email.value != '' && pwd.value != '' && confirm_password.value != ''){
     createUserwithEmailandPwd();
   }else{
-    alert('empty email and password field')
+    alert("the field are empty")
   }
-})
+});
 
-// 2- create account for the employee
+
+redirectlogin.addEventListener('click',function(e){
+  e.preventDefault();
+  window.location.href = '../../login.html';
+});
+
+
+
+
+// 4- create account with  email and password (auth)
 function createUserwithEmailandPwd(){
-  createUserWithEmailAndPassword(auth,email.value,pwd.value).then(()=>{
-   }).then(()=>{
+  if(pwd.value == confirm_password.value){
+    createUserWithEmailAndPassword(auth,email.value,pwd.value).then(()=>{
 
-           console.log('user email and pwd are created');
-           const Logoutclass = async() =>{
-               await signOut(auth);
-               console.log('logout success');
-       }
-
-    
-   }).catch((error)=>{
-       console.log('error from add-employe.js in company folder: ' + error);
-   });
+    }).then(()=>{
+      errormsg.style.display = 'none';
+      successmsg.style.display = 'block';
+      registerAccountBtn.style.display = 'none';
+      email.style.display = 'none';
+      pwd.style.display = 'none';
+      lblemail.style.display = 'none';
+      lblpwd.style.display = 'none';
+      loginpage.style.display = 'none';
+      redirectlogin.style.display = 'block';
+      successmsg.innerText = 'user email and pwd are created login to your account';
+      redirectlogin.innerText = 'login now';
+      email.value = '';
+      pwd.value = '';
+      loginpage.innerText = '';
+      const Logoutclass = async() =>{
+        await signOut(auth);
+        console.log('logout success');
+      }
+      Logoutclass();
+    }).catch((error)=>{
+      successmsg.style.display = 'none';
+      errormsg.style.display = 'block';
+      errormsg.innerText = 'email and password are already exists';
+    });
+  }else{
+    successmsg.style.display = 'none';
+    errormsg.style.display = 'block';
+    errormsg.innerHTML = 'The password are not matched!....';
   }
+}

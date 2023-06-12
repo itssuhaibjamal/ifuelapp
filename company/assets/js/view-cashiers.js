@@ -24,6 +24,38 @@ auth.onAuthStateChanged((user)=>{
   }
 });
 //    function that display employee data
+
+async function ViewData() {
+  tr.innerHTML = ""; // Clear the HTML content before populating with new data
+
+  const currentUser = getCurrentUser(); // Replace getCurrentUser with your actual function to get the current logged-in user
+
+  const ref = collection(db, "customers");
+  const querySnapshot = await getDocs(query(ref, where("company_associated", "==", currentUser)));
+
+  if (querySnapshot.empty) {
+    tr.innerHTML = `<p class='text-center'>There is no data to be fetched for the current user</p>`;
+  } else {
+    let number = 1;
+    querySnapshot.forEach(doc => {
+      tr.innerHTML += `
+        <tr>
+          <td>${number}</td>
+          <td><img src='${doc.data().user_logo}' class='rounded-circle' width=75 height=75></td>
+          <td>${doc.data().user_fullname}</td>
+          <td>${doc.data().user_email}</td>
+          <td>${doc.data().user_phone}</td>
+          <td>${doc.data().created_date}</td>
+          <td>
+            <a href='view-single-customer.html?view=${doc.id}' class='btn btn-primary'>View</a>
+            <a href='view_service.html?delete=${doc.id}' class='btn btn-danger'>Delete</a>
+          </td>
+        </tr>
+      `;
+      number++;
+    });
+  }
+}
 async function Viewemployeedata(){
     var ref = collection(db,"users");
     tr.innerHTML= "<p class='d-flex'>Loading Please Wait...</p>";
