@@ -51,7 +51,7 @@ async function Viewemployeedata(){
         <td>${number}</td>
         <td><img src="${doc.data().user_logo}" class="rounded-circle" width=50 height=50/></td>
         <td>${doc.data().user_fullname}</td>
-        <td>${doc.data().user_gender}</td>
+        <td>${doc.data().user_city}</td>
         <td>${doc.data().user_email}</td>
         <td>${doc.data().user_phone}</td>
         <td>${doc.data().created_date}</td>

@@ -143,11 +143,10 @@
             </a>
           </li>
           <li>
-            <a href="view-loan.html">
+            <a href="view-loans.html">
               <i class="bi bi-circle"></i><span>View Loans</span>
             </a>
           </li>
-        </ul>
         </ul>
       </li><!-- End Customers Nav -->
 
@@ -201,13 +200,25 @@
               <i class="bi bi-circle"></i><span>View posts</span>
             </a>
           </li>
+        </ul>
+      </li><!-- End Posts Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-people"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="view-single-post.html">
-              <i class="bi bi-circle"></i><span>View post</span>
+            <a href="fuel-report.html">
+              <i class="bi bi-circle"></i><span>Fuels Report</span>
+            </a>
+          </li>
+          <li>
+            <a href="sale-report.html">
+              <i class="bi bi-circle"></i><span>Sale Report</span>
             </a>
           </li>
         </ul>
-      </li><!-- End Posts Nav -->
+      </li><!-- End Report Nav -->
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
@@ -238,26 +249,21 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Fuels</h5>
-              <div class="mb-4">
-                <div class="col-4 d-flex">
-                  <input type="text" class="form-control" placeholder="Search by name">
-                      
-                  <button class="btn btn-primary" style="position:relative;left:10px;">Search</button>
-                </div>
-              </div>
-              <div class="mb-4">
-                <div class="col-4 d-flex">
-                  <a class="btn btn-primary" href="add-fuels.html" style="position:relative;left:10px;">Register new fuel</a>
-                </div>
-              </div>
-              <!-- Table with hoverable rows -->
+    <div class="row">
+      <div class="col-xxl-20 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">View Fuelsales </h5>
+          <div class="mb-4">
+            <div class="col-4 d-flex">
+              <input type="text" class="form-control" placeholder="Search by name">
+                  
+              <button class="btn btn-primary" style="position:relative;left:10px;">Search</button>
+            </div>
+          </div>
+            <!-- <p>Use contextual classes <code>.table-primary .table-secondary .table-success .table-danger .table-warning .table-info .table-light .table-dark</code> to color tables, table rows or individual cells.</p> -->
+            <!-- Table Variants -->
+            <div class="table-responsive">
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -274,12 +280,17 @@
                 </tbody>
               </table>
             </div>
+            <!-- End Table Variants -->
+    
           </div>
         </div>
       </div>
-    </section>
-
-  </main><!-- End #main -->
+      <div class="col">
+        <!-- <h4>Search By Category</h4> -->
+      </div>
+     </div>
+    </main>
+  
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
