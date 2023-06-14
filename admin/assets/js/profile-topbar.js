@@ -15,9 +15,9 @@ import {firebaseConfig} from './firebase.js';
 
 
 
- let profile = document.getElementById('profile-img');
- let fullname = document.getElementById('fullname');
- let subname = document.getElementById('subname');
+ let profile = document.getElementById('user_logo');
+ let fullname = document.getElementById('user_fullname');
+ let subname = document.getElementById('user_subname');
 
 
 

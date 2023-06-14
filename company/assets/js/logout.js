@@ -19,3 +19,4 @@ const Logoutclass = async() =>{
   window.location.href = '../../login.html';
 }
 logout_btn.addEventListener('click',Logoutclass);
+logout.addEventListener('click',Logoutclass);
