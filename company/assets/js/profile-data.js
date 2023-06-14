@@ -27,18 +27,18 @@ auth.onAuthStateChanged((user)=>{
     userid = user.uid;
   }
 });
-let profile = document.getElementById('profile-img');
-let fullname = document.getElementById('fullname');
-let subname = document.getElementById('subname');
+let comp_logo = document.getElementById('comp_logo');
+let comp_name = document.getElementById('comp_name');
+let comp_subname = document.getElementById('comp_subname');
 
 async function getCompProfile(){
   let dRef = collection(db,'company');
   let docRef = await getDocs(dRef);
   docRef.forEach(doc => {
-    if(doc.data().email == useremail){
-      profile.src = `${doc.data().comp_logo}`;
-      fullname.innerHTML = doc.data().comp_name;
-      subname.innerHTML = doc.data().comp_name;
+    if(doc.data().comp_email == useremail){
+      comp_logo.src = `${doc.data().comp_logo}`;
+      comp_name.innerHTML = doc.data().comp_name;
+      comp_subname.innerHTML = doc.data().comp_name;
     }
   });
 }

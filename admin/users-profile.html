@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Company | Profile</title>
+  <title>iFuelApp - Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -32,16 +32,23 @@
 
 <body>
 
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="dashboard.html" class="logo d-flex align-items-center">
-        <img src="assets/img/ifuel_logo-01.png" alt="iFuelApp-logo" style="position:relative; top:6px;">
-        <span class="d-none d-lg-block"><span style="font-size: 18px; color: black;">iFuelApp</span></span>
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/ifuel_logo-01.png" alt="">
+        <span class="d-none d-lg-block">iFuelApp</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
+    <div class="search-bar">
+      <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+      </form>
+    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
@@ -109,98 +116,71 @@
     </nav><!-- End Icons Navigation -->
 
   </header><!-- End Header -->
- <!-- ======= Sidebar ======= -->
- <aside id="sidebar" class="sidebar">
 
-  <ul class="sidebar-nav" id="sidebar-nav">
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
 
-    <li class="nav-item">
-      <a class="nav-link " href="index.html">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-building"></i><span>Manage Customers</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="add-new-customer.html">
-            <i class="bi bi-circle"></i><span>Add new customer</span>
-          </a>
-        </li>
-        <li>
-          <a href="view-customers.html">
-            <i class="bi bi-circle"></i><span>View customers</span>
-          </a>
-        </li>
-        <li>
-          <a href="view-new-customers.html">
-            <i class="bi bi-circle"></i><span>View new customers</span>
-          </a>
-        </li>
-      </ul>
-    </li><!-- End Components Nav -->
+      <li class="nav-item">
+        <a class="nav-link " href="index.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-people"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="add-new-cashier.html">
-            <i class="bi bi-circle"></i><span>Add new user cashier</span>
-          </a>
-        </li>
-        <li>
-          <a href="view-single-cashier.html">
-            <i class="bi bi-circle"></i><span>View users cashier</span>
-          </a>
-        </li>
-      </ul>
-    </li><!-- End Forms Nav -->
-    <!-- <li class="nav-item">
-      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-        <i class="bi bi-people"></i><span>Posts</span><i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-        <li>
-          <a href="add-new-post.html">
-            <i class="bi bi-circle"></i><span>Add new post</span>
-          </a>
-        </li>
-        <li>
-          <a href="view-posts.html">
-            <i class="bi bi-circle"></i><span>View posts</span>
-          </a>
-        </li>
-        <li>
-          <a href="view-single-post.html">
-            <i class="bi bi-circle"></i><span>View post</span>
-          </a>
-        </li>
-      </ul>
-    </li>End Posts Nav -->
-    <li class="nav-heading">Pages</li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-building"></i><span>Manage Companies</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="add-new-company.html">
+              <i class="bi bi-circle"></i><span>Add new company</span>
+            </a>
+          </li>
+          <li>
+            <a href="view-companies.html">
+              <i class="bi bi-circle"></i><span>View company</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Components Nav -->
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="users-profile.html">
-        <i class="bi bi-person-fill"></i>
-        <span>My Account</span>
-      </a>
-    </li><!-- End Profile Page Nav -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" id="logout" href="#">
-        <i class="bi bi-box-arrow-right"></i>
-        <span>Logout</span>
-      </a>
-    </li><!-- End Register Page Nav -->
-  </ul>
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-people"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="add-new-admin.html">
+              <i class="bi bi-circle"></i><span>Add new user admin</span>
+            </a>
+          </li>
+          <li>
+            <a href="view-admin-user.html">
+              <i class="bi bi-circle"></i><span>View users admin</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+      <li class="nav-heading">Pages</li>
 
-</aside><!-- End Sidebar-->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+          <i class="bi bi-person-fill"></i>
+          <span>My Account</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" id="logout" href="#">
+          <i class="bi bi-box-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+    </ul>
 
+  </aside><!-- End Sidebar-->
 
 
   <main id="main" class="main">
@@ -280,7 +260,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Comp CEO</div>
+                    <div class="col-lg-3 col-md-4 label">Admin City</div>
                     <div class="col-lg-9 col-md-8"id="comp_ceo"></div>
                   </div>
 
@@ -320,7 +300,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label class="col-md-4 col-lg-3 col-form-label">Email</label>
+                      <label class="col-md-4 col-lg-3 col-form-label">Admin City</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="email" type="email" class="form-control" id="updateCeo" value="k.anderson@example.com" readonly>
                       </div>

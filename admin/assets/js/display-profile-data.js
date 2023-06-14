@@ -26,7 +26,7 @@ let comp_email = document.getElementById('c_email');
 let fullname2 = document.getElementById('fullname2');
 let roles = document.getElementById('roles');
 let phonenumber = document.getElementById('phonenumber');
-let comp_ceo = document.getElementById('comp_ceo');
+let admin_city = document.getElementById('comp_ceo');
 
 // check the auth change status then get the email of the user
 let useremail = '';
@@ -104,7 +104,7 @@ async function Displayprofiledata(id){
       comp_email.innerHTML = `${docs.data().user_email}`;
       roles.innerHTML = 'Super Admin';
       phonenumber.innerHTML = `${docs.data().user_phone}`;
-      comp_ceo.innerHTML = `${docs.data().user_city}`;
+      admin_city.innerHTML = `${docs.data().user_city}`;
       // display data inside update form
       updatefullname.value = `${docs.data().user_fullname}`;
       updatePhone.value = `${docs.data().user_phone}`;
@@ -112,7 +112,7 @@ async function Displayprofiledata(id){
       // update btn when clicked excute the following
       updatebtn.addEventListener('click',function (e) {
         e.preventDefault();
-        updatedata(docs.id,uploadprofileimage.src,updatefullname,updatePhone, comp_ceo_name)
+        updatedata(docs.id,uploadprofileimage.src,updatefullname,updatePhone, admin_city)
       });
     }
   });
@@ -127,13 +127,12 @@ async function updatedata(id,img){
   // call the function that gets the returned value(downloaded imageurl from the function uploadimagetofirebasestorage  to this functions)
   let urlofimg =  await getdownloadedurlafteruploadimage(value);
   //   get the id from url by slicing it  (uid is company id)
-  const ref = doc(db, "company", id.toString());
+  const ref = doc(db, "admin", id.toString());
   await updateDoc(
     ref,{
-      comp_logo:urlofimg,
-      comp_name:updatefullname.value,
-      comp_phone:updatePhone.value,
-      comp_ceo_name:comp_ceo_name.value,
+      user_logo:urlofimg,
+      user_fullname:updatefullname.value,
+      user_phone:updatePhone.value,
     }).then(()=>{
       console.log('Data Updated Successfully');
     }).catch((error)=>{

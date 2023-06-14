@@ -36,7 +36,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="dashboard.html" class="logo d-flex align-items-center">
         <img src="assets/img/ifuel_logo-01.png" alt="iFuelApp-logo" style="position:relative; top:6px;">
         <span class="d-none d-lg-block"><span style="font-size: 18px; color: black;">iFuelApp</span></span>
       </a>
@@ -71,13 +71,13 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img  id="comp_logo" alt="Profile" class='rounded-circle' width=50 height=50>
-            <span class="d-none d-md-block dropdown-toggle ps-2"id="fullname"></span>
+            <img  id="comp_logo" alt="Profile" class='rounded-circle' width=40 height=40>
+            <span class="d-none d-md-block dropdown-toggle ps-2" id="comp_name"></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6 id="subname"></h6>
+              <h6 id="comp_subname"></h6>
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -239,7 +239,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Add new Cashier</h1>
+      <h1>Add new Post</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -260,10 +260,10 @@
                   <input type="text" class="form-control" id="post_title" placeholder="Post Title">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="fuel_type" placeholder="Fuel Type">
+                  <input type="text" class="form-control" id="post_desc" placeholder="Post Description">
                 </div>
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="fuel_price" placeholder="Fuel Price">
+                  <input type="file" class="form-control" id="post_file">
                 </div>
                 <div class="text-center">
                   <button type="submit" id="createnewpost" class="btn btn-primary">Submit Post</button>
