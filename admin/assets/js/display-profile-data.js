@@ -21,7 +21,6 @@ let profile = document.getElementById('profile');
 let fullname = document.getElementById('fullname');
 let role = document.getElementById('role');
 let comp_email = document.getElementById('c_email');
-
 // Company Profile Details form
 let fullname2 = document.getElementById('fullname2');
 let roles = document.getElementById('roles');
@@ -45,10 +44,8 @@ let updatefullname = document.getElementById('updatefullname');
 let updatePhone = document.getElementById('updatePhone');
 let updateCeo = document.getElementById('updateCeo');
 let updatebtn = document.getElementById('updatebtn');
-
 // Displayprofiledata();
 // add image to firebase storeage
-
 async function uploadimagetofirebasestorage(){
   let uploadprofileimage = document.getElementById('uploadprofileimage');
   // const ref= app.storage().ref()
@@ -99,9 +96,9 @@ async function Displayprofiledata(id){
       profile.src =`${docs.data().user_logo}`;
       fullname.innerHTML = `${docs.data().user_fullname}`;
       // role of the company will be hand coded no need for the db
-      role.innerHTML= `${docs.data().user_fullname}`;
+      role.innerHTML= `${docs.data().user_email}`;
       fullname2.innerHTML = `${docs.data().user_fullname}`;
-      comp_email.innerHTML = `${docs.data().user_email}`;
+      comp_email.innerHTML = `${docs.data().user_phone}`;
       roles.innerHTML = 'Super Admin';
       phonenumber.innerHTML = `${docs.data().user_phone}`;
       admin_city.innerHTML = `${docs.data().user_city}`;
