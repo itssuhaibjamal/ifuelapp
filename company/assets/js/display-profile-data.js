@@ -17,10 +17,10 @@ const auth = getAuth(app);
 const storage = getStorage();
 
 // form data
-let c_profile = document.getElementById('c_profile');
-let c_name = document.getElementById('c_name');
-let c_role = document.getElementById('c_role');
-let comp_email = document.getElementById('c_email');
+let company_profile = document.getElementById('company_profile');
+let company_name = document.getElementById('company_name');
+let c_role = document.getElementById('company_role');
+let comp_email = document.getElementById('company_email');
 
 
 // success or fail messages
@@ -28,7 +28,7 @@ let successmsg = document.getElementById('successmsg');
 let errormsg = document.getElementById('errormsg');
 
 // Company Profile Details form
-let comp_name = document.getElementById('comp_name');
+let comp_name = document.getElementById('comp_names');
 let comp_role = document.getElementById('comp_role');
 let comp_phone = document.getElementById('comp_phone');
 let comp_ceo = document.getElementById('comp_ceo');
@@ -101,13 +101,13 @@ async function Displayprofiledata(id){
     // console.log(docs.data().company_name);
     // compare the id for company collection to current company account
     if(docs.data().comp_email == useremail){
-      c_profile.src =`${docs.data().comp_logo}`;
-      c_name.innerHTML = `${docs.data().comp_name}`;
+      company_profile.src =`${docs.data().comp_logo}`;
+      company_name.innerHTML = `${docs.data().comp_name}`;
       // role of the company will be hand coded no need for the db
       // c_role.innerHTML= `${docs.data().comp_name}`;
       comp_email.innerHTML = `${docs.data().comp_email}`;
       comp_name.innerHTML = `${docs.data().comp_name}`;
-      comp_role.innerHTML = 'company';
+      comp_role.innerHTML = 'Company';
       comp_phone.innerHTML = `${docs.data().comp_phone}`;
       comp_ceo.innerHTML = `${docs.data().comp_ceo_name}`;
       // display data inside update form

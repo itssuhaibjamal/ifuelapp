@@ -258,10 +258,10 @@
               <h5 class="card-title">Customers List</h5>
               <div class="mb-4">
                 <div class="col-4 d-flex">
-                  <input type="text" class="form-control" placeholder="Search by name">
-                      
-                  <button class="btn btn-primary" style="position:relative;left:10px;">Search</button>
-                </div>
+                  <input id="search" type="text" class="form-control" placeholder="Search by name" onkeyup="myFunction()">
+                  <div class="col-4 d-flex">
+                    <a class="btn btn-primary" href="add-new-customer.html" style="position:relative;left:10px;">Add new customer</a>
+                  </div>
               </div>
               <!-- Table with hoverable rows -->
               <table class="table table-hover">
@@ -295,10 +295,6 @@
       &copy; Copyright <strong><span>iFuelApp</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
       Designed by <a href="https://ifuelapp.netlify.app/">iFuelApp</a>
     </div>
   </footer><!-- End Footer -->
@@ -313,6 +309,32 @@
   <script src="assets/vendor/quill/quill.min.js"></script>
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+
+  <script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("customer_list");
+        tr = table.getElementsByTagName("tr");
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[2];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              console.log(txtValue)
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+  </script>
+
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>

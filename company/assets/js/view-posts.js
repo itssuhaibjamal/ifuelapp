@@ -31,7 +31,7 @@ async function Viewemployeedata(){
    try {
    const docSnap = await getDocs(ref);
 // check if collection that we are fetching if its empty excute the else statement
-   if(docSnap.empty && doc.data().comp_associated_email == companyemail){
+   if(docSnap.empty && doc.data().company_associated == companyemail){
        // console.log("db isn't empty");
        tr.innerHTML = `<p class='text-center'>There is no data to fetched , please add new fuel to be displayed</p>`;
     
@@ -44,15 +44,14 @@ async function Viewemployeedata(){
    docSnap.forEach(doc => {
       
        
-      if(doc.data().comp_associated_email == companyemail){
+      if(doc.data().company_associated == companyemail){
         tr.innerHTML += `
 
         <tr>
         <td>${number}</td>
         <td>${doc.data().post_title}</td>
-        <td>${doc.data().fuel_type}</td>
-        <td>${doc.data().fuel_price}</td>
-        <td>${doc.data().comp_associated_email}</td>
+        <td><img src='${doc.data().post_file}' class="rounded-circle" width='50' height='50'></td>
+        <td>${doc.data().post_desc}</td>
         <td>${doc.data().created_date}</td>
         <td class='d-flex'><a href="view-single-post.html?view=${doc.id}" class='btn btn-primary'>View</a>&numsp;<a href='update-post.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;<a href='view-posts.html?del=${doc.id}' class='btn btn-danger'>Delete</a></td>
         </tr>

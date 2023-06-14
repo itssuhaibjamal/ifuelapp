@@ -30,44 +30,45 @@ let error_msg = document.getElementById('error_msg');
 let success_msg = document.getElementById('success_msg');
 
 // customers information from the customers collection
-// customers information from the customers collection
-async function displayCustomersName() {
-  let user = firebase.auth().currentUser;
-  let userEmail = user.email;
-
-  let Docref = collection(db, 'customers').where('comp_associated', '==', userEmail);
-  let Docsnap = await getDocs(Docref);
-
-  Docsnap.forEach((doc) => {
-    var option = document.createElement('option');
-    option.text = doc.data().user_fullname;
-    customer_name.options.add(option);
-  });
-
-  // check the change of the value in select element
-  customer_name.addEventListener('change', (event) => {
-    getCurrentCustomerInfo(event.target.value, userEmail);
-  });
+async function displayCustomersName(){
+    let Docref = collection(db,'customers');
+    let Docsnap = await getDocs(Docref);
+    Docsnap.forEach(docs => {
+        var option = document.createElement('option');
+        option.text = docs.data().user_fullname;
+        customer_name.options.add(option)
+    });
+    // check the change of the value in select element
+    customer_name.addEventListener('change',(event)=>{
+        getCurrentCustomerInfo(event.target.value)
+    });
 }
 
-async function getCurrentCustomerInfo(name, userEmail) {
-  let Docref = collection(db, 'customers').where('comp_associated', '==', userEmail);
-  let result = await getDocs(Docref);
-
-  result.forEach((doc) => {
-    if (doc.data().user_fullname === name) {
-      console.log(doc.id);
-      console.log(doc.data().user_fullname);
-      console.log(doc.data().user_email);
-      console.log(doc.data().user_phone);
-    }
-  });
+async function getCurrentCustomerInfo(name){
+    let Docref = collection(db,'customers');
+    let result = await getDocs(Docref);
+    result.forEach(doc =>{
+        // check if the select element inside the subscription form
+        if(doc.data().user_fullname == name){
+            console.log(idinput.textContent);
+            idinput.innerHTML =doc.id;
+                customer_email.value= doc.data().user_email;
+                customer_phone.value = doc.data().user_phone;
+            }
+        });
+        // console.log(result.id);
 }
-
 // display company names in the select form
 displayCustomersName();
-
-
+// getting the current user login email and uid
+let useremail = '';
+let userid;
+auth.onAuthStateChanged((user)=>{
+  if(user){
+    useremail = user.email;
+    userid = user.uid;
+  }
+});
 // fuels information
 // customers information from the customers collection
 async function displayFuelsType(){
@@ -78,11 +79,11 @@ async function displayFuelsType(){
         option.text = docs.data().fuel_type;
         fuel_type.options.add(option)
     });
-    // check the change of the value in select element
-    fuel_type.addEventListener('change',(event)=>{
-        getCurrentFuelInfo(event.target.value)
-    });
-}
+  }
+  // check the change of the value in select element
+  fuel_type.addEventListener('change',(event)=>{
+      getCurrentFuelInfo(event.target.value)
+  });
 
 async function getCurrentFuelInfo(name){
     let Docref = collection(db,'fuels');
@@ -101,15 +102,7 @@ async function getCurrentFuelInfo(name){
 // display company names in the select form
 displayFuelsType();
 
-// getting the current user login email and uid
-let useremail = '';
-let userid;
-auth.onAuthStateChanged((user)=>{
-  if(user){
-    useremail = user.email;
-    userid = user.uid;
-  }
-});
+
 
 // store subscription data in the subscription collection
 let c = new Date();

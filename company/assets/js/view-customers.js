@@ -56,8 +56,8 @@ async function Viewemployeedata(){
         <td>${doc.data().user_phone}</td>
         <td>${doc.data().created_date}</td>
         <td class='d-flex'><a href="view-single-customer.html?view=${doc.id}" class='btn btn-primary'>View</a>&numsp;
-        <a href='update-fuel.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;
-        <a href='view-fuels.html?delete=${doc.id}' class='btn btn-danger'>Delete</a></td>
+        <a href='update-customer.html?update=${doc.id}' class='btn btn-success'>Update</a> &numsp;
+        <a href='view-customers.html?delete=${doc.id}' class='btn btn-danger'>Delete</a></td>
         </tr>
         
     `;
